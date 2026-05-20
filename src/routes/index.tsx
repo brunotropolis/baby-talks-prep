@@ -355,7 +355,7 @@ const HTML = `<style>
   }
   .dor-esquerda .section-sub { margin-bottom: 32px; }
   .dor-direita .dor-header-img {
-    aspect-ratio: 2 / 3;
+    aspect-ratio: 9 / 16;
     border-radius: 12px;
     overflow: hidden;
     background: var(--lavanda);
@@ -365,7 +365,7 @@ const HTML = `<style>
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 15%;
+    object-position: center 20%;
     display: block;
   }
   .dor-grid {
@@ -1119,7 +1119,7 @@ const HTML = `<style>
     /* Dor — foto ao final */
     .dor-layout { grid-template-columns: 1fr; gap: 32px; }
     .dor-direita { order: 10; }
-    .dor-direita .dor-header-img { aspect-ratio: 3 / 4; }
+    .dor-direita .dor-header-img { aspect-ratio: 4 / 5; }
     /* Palestrantes — 1 por linha */
     .palestrantes-grid { grid-template-columns: 1fr; }
     /* Evento dados — 2 cols */
@@ -1217,7 +1217,7 @@ const HTML = `<style>
 
       <div class="dor-direita">
         <div class="dor-header-img">
-          <img src="/images/local-portrait.jpg" alt="Mãe gestante">
+          <img src="/images/local-portrait-v2.jpg" alt="Mãe gestante">
         </div>
       </div>
     </div>
