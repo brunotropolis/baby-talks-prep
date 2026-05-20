@@ -151,6 +151,8 @@ const HTML = `<style>
   .hero-content {
     position: relative;
     z-index: 3;
+    display: flex;
+    flex-direction: column;
   }
   .hero-img-wrap {
     position: relative;
@@ -1092,8 +1094,14 @@ const HTML = `<style>
     .hero-mobile-img { display: block; }
     .hero-headline { font-size: 48px; line-height: 1.0; }
     .hero-content { text-align: center; }
-    .hero-meta { flex-direction: column; align-items: stretch; gap: 6px; margin: 20px 0 24px; }
+    .hero-hook    { order: 1; }
+    .hero-headline { order: 2; }
+    .hero-sub     { order: 3; }
+    .hero-desc    { order: 4; }
+    .hero-meta    { order: 5; flex-direction: column; align-items: stretch; gap: 6px; margin: 24px 0; }
     .hero-meta-item { font-size: 11px; padding: 7px 14px; justify-content: center; }
+    .btn-magenta  { order: 6; }
+    .hero-mobile-img { order: 7; }
     .hero-hook { font-size: 18px; line-height: 1.3; }
     .hero-sub { font-size: 16px; line-height: 1.35; }
     .hero-desc { font-size: 14px; line-height: 1.5; margin-bottom: 28px; }
