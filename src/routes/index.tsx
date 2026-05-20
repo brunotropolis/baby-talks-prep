@@ -105,7 +105,7 @@ const HTML = `<style>
     text-decoration: none;
   }
   .nav-logo img {
-    height: 44px;
+    height: 64px;
     width: auto;
     display: block;
   }
@@ -188,16 +188,21 @@ const HTML = `<style>
   .hero-meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 24px;
+    gap: 10px;
     margin: 28px 0 32px;
-    font-size: 13px;
-    color: var(--azul);
-    border-top: 1px solid rgba(142, 155, 209, 0.35);
-    border-bottom: 1px solid rgba(142, 155, 209, 0.35);
-    padding: 14px 0;
   }
-  .hero-meta-item { display: flex; align-items: center; gap: 8px; font-weight: 500; }
-  .hero-meta-icon { color: var(--magenta); font-size: 16px; }
+  .hero-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    background: var(--lilas-escuro);
+    padding: 8px 16px;
+    border-radius: 100px;
+  }
+  .hero-meta-icon { font-size: 15px; }
   .hero-hook {
     font-family: 'Fraunces', serif;
     font-style: italic;
@@ -280,21 +285,26 @@ const HTML = `<style>
   }
   .section-title-big .magenta { color: var(--magenta); font-style: italic; font-weight: 500; }
   .section-tag {
-    display: inline-block;
+    display: block;
     font-size: 11px;
     color: var(--magenta);
     letter-spacing: 0.22em;
     text-transform: uppercase;
     font-weight: 700;
     margin-bottom: 18px;
+    text-align: center;
   }
   .section-tag.dark { color: var(--lilas-escuro); }
+  .section-title-big { text-align: center; }
   .section-sub {
     font-size: 17px;
     color: var(--azul-suave);
     max-width: 640px;
     margin-bottom: 56px;
     line-height: 1.65;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* ============= SEÇÃO: FAIXA DE NÚMEROS ============= */
@@ -335,17 +345,15 @@ const HTML = `<style>
   .dor .watermark { left: -40px; top: 80px; }
   .dor-layout {
     display: grid;
-    grid-template-columns: 1fr 360px;
+    grid-template-columns: 1fr 340px;
     gap: 60px;
-    align-items: start;
+    align-items: center;
     position: relative;
     z-index: 2;
   }
   .dor-esquerda .section-sub { margin-bottom: 32px; }
   .dor-direita .dor-header-img {
-    position: sticky;
-    top: 90px;
-    aspect-ratio: 3 / 5;
+    aspect-ratio: 2 / 3;
     border-radius: 12px;
     overflow: hidden;
     background: var(--lavanda);
@@ -355,6 +363,7 @@ const HTML = `<style>
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 15%;
     display: block;
   }
   .dor-grid {
@@ -436,7 +445,7 @@ const HTML = `<style>
     box-shadow: 0 8px 24px rgba(31, 42, 86, 0.08);
   }
   .palestra.destaque {
-    background: linear-gradient(135deg, white 0%, var(--rosa-bebe) 100%);
+    background: white;
     border: 2px solid var(--magenta);
   }
   .palestra.span2 { grid-column: span 2; }
@@ -1065,7 +1074,7 @@ const HTML = `<style>
     justify-content: center;
   }
   footer .nav-logo img {
-    height: 80px;
+    height: 96px;
   }
   footer p { margin-bottom: 6px; }
   footer a { color: var(--magenta); text-decoration: none; font-weight: 600; }
@@ -1078,13 +1087,16 @@ const HTML = `<style>
     .hero-layout { grid-template-columns: 1fr; gap: 0; }
     .hero-img-wrap { display: none; }
     .hero-mobile-img { display: block; }
-    .hero-headline { font-size: 48px; }
+    .hero-headline { font-size: 48px; line-height: 1.0; }
     .hero-content { text-align: center; }
-    .hero-meta { justify-content: center; }
-    .hero-hook, .hero-sub, .hero-desc { text-align: center; }
+    .hero-meta { flex-direction: column; align-items: center; gap: 6px; margin: 20px 0 24px; }
+    .hero-meta-item { font-size: 11px; padding: 5px 14px; }
+    .hero-hook { font-size: 18px; line-height: 1.3; }
+    .hero-sub { font-size: 16px; line-height: 1.35; }
+    .hero-desc { font-size: 14px; line-height: 1.5; margin-bottom: 28px; }
     /* Títulos e textos gerais */
     .section-title-big { font-size: 40px; }
-    .section-tag, .section-sub { text-align: center; }
+    .nav-logo img { height: 52px; }
     .cta-final h2 { font-size: 56px; }
     /* Stats */
     .stats-bar-inner { grid-template-columns: repeat(2, 1fr); gap: 20px; }
@@ -1095,7 +1107,7 @@ const HTML = `<style>
     /* Dor — foto ao final */
     .dor-layout { grid-template-columns: 1fr; gap: 32px; }
     .dor-direita { order: 10; }
-    .dor-direita .dor-header-img { position: static; aspect-ratio: 4 / 3; }
+    .dor-direita .dor-header-img { aspect-ratio: 3 / 4; }
     /* Palestrantes — 1 por linha */
     .palestrantes-grid { grid-template-columns: 1fr; }
     /* Evento dados — 2 cols */
@@ -1141,6 +1153,9 @@ const HTML = `<style>
         <p class="hero-sub">a que o livro não dá, o curso não entrega e o Instagram não substitui.</p>
         <p class="hero-desc">Mais do que aprender teoria, vocês vão sair sabendo <strong>o que fazer</strong> no parto, na amamentação, no sono do bebê e nas primeiras semanas em casa. Cinco palestras com especialistas, em cinco horas.</p>
         <a href="#ingressos" class="btn-magenta">Quero garantir meu ingresso</a>
+        <div class="hero-mobile-img">
+          <img src="/images/hero-casal.jpg" alt="Casal grávido" />
+        </div>
       </div>
       <div class="hero-img-wrap">
         <div class="hero-img-shape">
@@ -1386,7 +1401,7 @@ const HTML = `<style>
         <div class="ingresso-desc">Você + parceiro(a). O mais escolhido, e o que o evento foi feito pra ser.</div>
         <div class="ingresso-preco-wrap">
           <span class="ingresso-cifrao">R$</span>
-          <span class="ingresso-valor">280</span>
+          <span class="ingresso-valor">250</span>
         </div>
         <div class="ingresso-condicao">2 ingressos · 1º lote</div>
         <a href="#" class="ingresso-btn">Comprar com acompanhante</a>
@@ -1429,9 +1444,6 @@ const HTML = `<style>
       </div>
     </div>
 
-    <div class="hero-mobile-img">
-      <img src="/images/hero-casal.jpg" alt="Casal grávido" />
-    </div>
   </div>
 </section>
 
