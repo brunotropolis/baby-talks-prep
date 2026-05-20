@@ -696,11 +696,14 @@ const HTML = `<style>
   .inclusos .section-title-big .magenta { color: var(--magenta); }
   .inclusos-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 18px;
     position: relative;
     z-index: 2;
   }
+  .incluso { grid-column: span 2; }
+  .incluso:nth-child(4) { grid-column: 2 / 4; }
+  .incluso:nth-child(5) { grid-column: 4 / 6; }
   .incluso {
     background: white;
     border-radius: 10px;
@@ -1102,6 +1105,7 @@ const HTML = `<style>
     .stats-bar-inner { grid-template-columns: repeat(2, 1fr); gap: 20px; }
     /* Grids de conteúdo */
     .aprende-grid, .inclusos-grid, .ingressos-grid { grid-template-columns: 1fr; }
+    .incluso, .incluso:nth-child(4), .incluso:nth-child(5) { grid-column: span 1; }
     .dor-grid { grid-template-columns: 1fr; }
     .palestra.span2 { grid-column: span 1; }
     /* Dor — foto ao final */
