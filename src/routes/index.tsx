@@ -1089,8 +1089,8 @@ const HTML = `<style>
     .hero-mobile-img { display: block; }
     .hero-headline { font-size: 48px; line-height: 1.0; }
     .hero-content { text-align: center; }
-    .hero-meta { flex-direction: column; align-items: center; gap: 6px; margin: 20px 0 24px; }
-    .hero-meta-item { font-size: 11px; padding: 5px 14px; }
+    .hero-meta { flex-direction: column; align-items: stretch; gap: 6px; margin: 20px 0 24px; }
+    .hero-meta-item { font-size: 11px; padding: 7px 14px; justify-content: center; }
     .hero-hook { font-size: 18px; line-height: 1.3; }
     .hero-sub { font-size: 16px; line-height: 1.35; }
     .hero-desc { font-size: 14px; line-height: 1.5; margin-bottom: 28px; }
@@ -1151,7 +1151,7 @@ const HTML = `<style>
         <p class="hero-hook">Em um sábado, vocês vão criar</p>
         <h1 class="hero-headline">A sua<br>preparação<br>pra ser <span class="accent">pais.</span></h1>
         <p class="hero-sub">a que o livro não dá, o curso não entrega e o Instagram não substitui.</p>
-        <p class="hero-desc">Mais do que aprender teoria, vocês vão sair sabendo <strong>o que fazer</strong> no parto, na amamentação, no sono do bebê e nas primeiras semanas em casa. Cinco palestras com especialistas, em cinco horas.</p>
+        <p class="hero-desc">Mais do que aprender teoria, vocês vão sair sabendo <strong>o que fazer</strong> no parto, na amamentação, no sono do bebê e nas primeiras semanas em casa. 05 palestras completas com os melhores especialistas.</p>
         <a href="#ingressos" class="btn-magenta">Quero garantir meu ingresso</a>
         <div class="hero-mobile-img">
           <img src="/images/hero-casal.jpg" alt="Casal grávido" />
@@ -1219,7 +1219,7 @@ const HTML = `<style>
   <div class="container">
     <span class="section-tag">A imersão</span>
     <h2 class="section-title-big">O que vocês vão<br><span class="magenta">aprender de verdade</span></h2>
-    <p class="section-sub">Cinco palestras na ordem em que a vida acontece: da gravidez ao bebê em casa. Conteúdo construído a partir da escuta de mais de 140 gestantes.</p>
+    <p class="section-sub">Cinco palestras na ordem em que a vida acontece: da gravidez ao bebê em casa. Conteúdo construído a partir da escuta de centenas de mães.</p>
 
     <div class="aprende-grid">
 
