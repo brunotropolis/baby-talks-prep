@@ -141,43 +141,49 @@ const HTML = `<style>
     display: flex;
     align-items: center;
   }
-  .hero-bg {
-    position: absolute;
-    top: 0; left: 35%; right: 0;
-    height: 100%;
-    background-image: url('/images/hero-casal.jpg');
-    background-size: cover;
-    background-position: center center;
-  }
-  .hero-bg::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to right, var(--lavanda) 0%, transparent 42%);
-  }
-  .hero-grain {
-    position: absolute;
-    top: 0; left: 0;
-    width: 60%;
-    height: 100%;
-    background: radial-gradient(ellipse at top left, rgba(142, 155, 209, 0.25) 0%, transparent 60%);
-    pointer-events: none;
+  .hero-layout {
+    display: grid;
+    grid-template-columns: 1fr 440px;
+    gap: 60px;
+    align-items: center;
+    width: 100%;
   }
   .hero-content {
     position: relative;
     z-index: 3;
-    max-width: 600px;
   }
-  .hero-logo {
-    font-family: 'DM Sans', sans-serif;
-    margin-bottom: 16px;
+  .hero-img-wrap {
+    position: relative;
+    z-index: 2;
   }
-  .hero-logo .sub {
+  .hero-img-shape {
+    border-radius: 120px 24px 80px 24px;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    box-shadow: 0 28px 64px rgba(31, 42, 86, 0.14);
+    background: var(--lavanda);
+  }
+  .hero-img-shape img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
     display: block;
-    font-size: 12px;
-    color: var(--magenta);
-    letter-spacing: 0.22em;
-    font-weight: 700;
+  }
+  .hero-mobile-img {
+    display: none;
+    margin-top: 40px;
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    box-shadow: 0 10px 30px rgba(31, 42, 86, 0.12);
+  }
+  .hero-mobile-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    display: block;
   }
   .hero-meta {
     display: flex;
@@ -327,24 +333,25 @@ const HTML = `<style>
     overflow: hidden;
   }
   .dor .watermark { left: -40px; top: 80px; }
-  .dor-header {
+  .dor-layout {
     display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 56px;
-    align-items: center;
-    margin-bottom: 56px;
+    grid-template-columns: 1fr 360px;
+    gap: 60px;
+    align-items: start;
     position: relative;
     z-index: 2;
   }
-  .dor-header-texto .section-sub { margin-bottom: 0; }
-  .dor-header-img {
-    aspect-ratio: 4 / 5;
-    border-radius: 10px;
+  .dor-esquerda .section-sub { margin-bottom: 32px; }
+  .dor-direita .dor-header-img {
+    position: sticky;
+    top: 90px;
+    aspect-ratio: 3 / 5;
+    border-radius: 12px;
     overflow: hidden;
     background: var(--lavanda);
-    box-shadow: 0 12px 40px rgba(31, 42, 86, 0.08);
+    box-shadow: 0 16px 48px rgba(31, 42, 86, 0.10);
   }
-  .dor-header-img img {
+  .dor-direita .dor-header-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -352,10 +359,8 @@ const HTML = `<style>
   }
   .dor-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-    position: relative;
-    z-index: 2;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
   .dor-card {
     background: white;
@@ -458,8 +463,8 @@ const HTML = `<style>
   }
   .palestra-badge {
     display: inline-block;
-    background: var(--lilas);
-    color: white;
+    background: var(--lavanda);
+    color: var(--azul);
     padding: 4px 12px;
     border-radius: 100px;
     font-size: 10px;
@@ -468,7 +473,11 @@ const HTML = `<style>
     text-transform: uppercase;
     margin-bottom: 14px;
   }
-  .palestra.destaque .palestra-badge { background: var(--magenta); }
+  .palestra-badge.tema-gestacao { background: #F0D8E8; color: #8B3060; }
+  .palestra-badge.tema-parto    { background: #D8E4F4; color: #2A4480; }
+  .palestra-badge.tema-amamentacao { background: var(--magenta); color: white; }
+  .palestra-badge.tema-sono     { background: #D4EFE4; color: #1C6640; }
+  .palestra-badge.tema-fechamento { background: #EAE4F4; color: #4A3888; }
   .palestra-desc {
     font-size: 14.5px;
     color: var(--azul-suave);
@@ -862,33 +871,34 @@ const HTML = `<style>
     margin-top: 56px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-    text-align: left;
+    background: linear-gradient(135deg, var(--lilas) 0%, var(--lilas-escuro) 100%);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 28px rgba(142, 155, 209, 0.30);
   }
   .evento-dados-item {
-    background: white;
-    border: 1px solid var(--lavanda);
-    border-radius: 10px;
-    padding: 24px 22px;
-    box-shadow: 0 2px 8px rgba(31, 42, 86, 0.04);
+    padding: 28px 22px;
+    text-align: center;
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
   }
+  .evento-dados-item:last-child { border-right: none; }
   .evento-dados-icon {
-    font-size: 24px;
-    margin-bottom: 12px;
+    font-size: 22px;
+    margin-bottom: 8px;
   }
   .evento-dados-label {
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     font-weight: 700;
-    color: var(--magenta);
+    color: rgba(255, 255, 255, 0.72);
     margin-bottom: 6px;
   }
   .evento-dados-valor {
     font-size: 14px;
-    color: var(--azul);
-    font-weight: 500;
-    line-height: 1.5;
+    color: white;
+    font-weight: 600;
+    line-height: 1.45;
   }
 
   /* ============= LOCAL ============= */
@@ -1063,19 +1073,43 @@ const HTML = `<style>
 
   /* ============= RESPONSIVO ============= */
   @media (max-width: 900px) {
+    /* Hero */
     .hero { padding: 40px 0 60px; min-height: auto; }
-    .hero-bg { width: 100%; opacity: 0.15; }
+    .hero-layout { grid-template-columns: 1fr; gap: 0; }
+    .hero-img-wrap { display: none; }
+    .hero-mobile-img { display: block; }
     .hero-headline { font-size: 48px; }
-    .hero-logo .big { font-size: 44px; }
+    .hero-content { text-align: center; }
+    .hero-meta { justify-content: center; }
+    .hero-hook, .hero-sub, .hero-desc { text-align: center; }
+    /* Títulos e textos gerais */
     .section-title-big { font-size: 40px; }
+    .section-tag, .section-sub { text-align: center; }
     .cta-final h2 { font-size: 56px; }
+    /* Stats */
     .stats-bar-inner { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-    .dor-grid, .aprende-grid, .inclusos-grid, .ingressos-grid { grid-template-columns: 1fr; }
+    /* Grids de conteúdo */
+    .aprende-grid, .inclusos-grid, .ingressos-grid { grid-template-columns: 1fr; }
+    .dor-grid { grid-template-columns: 1fr; }
     .palestra.span2 { grid-column: span 1; }
-    .palestrantes-grid { grid-template-columns: repeat(2, 1fr); }
-    .evento-dados { grid-template-columns: repeat(2, 1fr); }
-    .dor-header { grid-template-columns: 1fr; gap: 32px; }
+    /* Dor — foto ao final */
+    .dor-layout { grid-template-columns: 1fr; gap: 32px; }
+    .dor-direita { order: 10; }
+    .dor-direita .dor-header-img { position: static; aspect-ratio: 4 / 3; }
+    /* Palestrantes — 1 por linha */
+    .palestrantes-grid { grid-template-columns: 1fr; }
+    /* Evento dados — 2 cols */
+    .evento-dados {
+      grid-template-columns: repeat(2, 1fr);
+      border-radius: 10px;
+    }
+    .evento-dados-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.18); }
+    .evento-dados-item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.18); }
+    .evento-dados-item:last-child,
+    .evento-dados-item:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+    /* Local */
     .local-grid { grid-template-columns: 1fr; gap: 40px; }
+    /* Padding geral */
     section, .dor, .aprende, .versus, .palestrantes, .inclusos, .ingressos, .local, .faq, .cta-final { padding: 60px 0; }
     .ingresso.popular { transform: scale(1); }
     .watermark { font-size: 100px; }
@@ -1094,23 +1128,25 @@ const HTML = `<style>
 
 <!-- ============= HERO ============= -->
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grain"></div>
   <div class="container">
-    <div class="hero-content">
-      <div class="hero-logo">
-        <span class="sub">CURITIBA · 15 DE AGOSTO · 2026</span>
+    <div class="hero-layout">
+      <div class="hero-content">
+        <div class="hero-meta">
+          <div class="hero-meta-item"><span class="hero-meta-icon">📅</span>15 de agosto · sábado</div>
+          <div class="hero-meta-item"><span class="hero-meta-icon">📍</span>Teatro Santo Anjo · Barigui</div>
+          <div class="hero-meta-item"><span class="hero-meta-icon">⏱️</span>8h30 às 13h30</div>
+        </div>
+        <p class="hero-hook">Em um sábado, vocês vão criar</p>
+        <h1 class="hero-headline">A sua<br>preparação<br>pra ser <span class="accent">pais.</span></h1>
+        <p class="hero-sub">a que o livro não dá, o curso não entrega e o Instagram não substitui.</p>
+        <p class="hero-desc">Mais do que aprender teoria, vocês vão sair sabendo <strong>o que fazer</strong> no parto, na amamentação, no sono do bebê e nas primeiras semanas em casa. Cinco palestras com especialistas, em cinco horas.</p>
+        <a href="#ingressos" class="btn-magenta">Quero garantir meu ingresso</a>
       </div>
-      <div class="hero-meta">
-        <div class="hero-meta-item"><span class="hero-meta-icon">📅</span>15 de agosto · sábado</div>
-        <div class="hero-meta-item"><span class="hero-meta-icon">📍</span>Teatro Santo Anjo · Barigui</div>
-        <div class="hero-meta-item"><span class="hero-meta-icon">⏱️</span>8h30 às 13h30</div>
+      <div class="hero-img-wrap">
+        <div class="hero-img-shape">
+          <img src="/images/hero-casal.jpg" alt="Casal grávido" />
+        </div>
       </div>
-      <p class="hero-hook">Em um sábado, vocês vão criar</p>
-      <h1 class="hero-headline">A sua<br>preparação<br>pra ser <span class="accent">pais.</span></h1>
-      <p class="hero-sub">a que o livro não dá, o curso não entrega e o Instagram não substitui.</p>
-      <p class="hero-desc">Mais do que aprender teoria, vocês vão sair sabendo <strong>o que fazer</strong> no parto, na amamentação, no sono do bebê e nas primeiras semanas em casa. Cinco palestras com especialistas, em cinco horas.</p>
-      <a href="#ingressos" class="btn-magenta">Quero garantir meu ingresso</a>
     </div>
   </div>
 </section>
@@ -1119,41 +1155,44 @@ const HTML = `<style>
 <section class="dor">
   <span class="watermark">DÚVIDAS</span>
   <div class="container">
-    <div class="dor-header">
-      <div class="dor-header-texto">
+    <div class="dor-layout">
+      <div class="dor-esquerda">
         <span class="section-tag">Vocês reconhecem isso?</span>
         <h2 class="section-title-big">As dúvidas que <span class="magenta">ninguém</span><br>respondeu até agora.</h2>
         <p class="section-sub">Vocês já leram três livros, salvaram 40 posts e o obstetra responde em 5 minutos. Mesmo assim, tem perguntas que continuam virando a madrugada.</p>
-      </div>
-      <div class="dor-header-img">
-        <img src="/images/local-portrait.jpg" alt="Mãe gestante">
-      </div>
-    </div>
 
-    <div class="dor-grid">
-      <div class="dor-card">
-        <div class="dor-card-q">E se eu não reconhecer o trabalho de parto?</div>
-        <div class="dor-card-a">O medo de ir cedo demais, tarde demais, ou de não saber a hora certa.</div>
+        <div class="dor-grid">
+          <div class="dor-card">
+            <div class="dor-card-q">E se eu não reconhecer o trabalho de parto?</div>
+            <div class="dor-card-a">O medo de ir cedo demais, tarde demais, ou de não saber a hora certa.</div>
+          </div>
+          <div class="dor-card">
+            <div class="dor-card-q">Vou conseguir amamentar?</div>
+            <div class="dor-card-a">A dúvida que mais aparece. Pega, dor, leite que não desce, primeiros dias.</div>
+          </div>
+          <div class="dor-card">
+            <div class="dor-card-q">E o sono do bebê?</div>
+            <div class="dor-card-a">Cada um tem uma opinião. Vocês querem entender o que é real, e como começar uma rotina sem culpa.</div>
+          </div>
+          <div class="dor-card">
+            <div class="dor-card-q">Como meu parceiro pode ajudar?</div>
+            <div class="dor-card-a">Ele quer apoiar mas não sabe como. O papel dele no parto e nos primeiros dias.</div>
+          </div>
+          <div class="dor-card">
+            <div class="dor-card-q">E se eu sofrer violência obstétrica?</div>
+            <div class="dor-card-a">O medo de não ser ouvida. Conhecer seus direitos e ter um plano de parto.</div>
+          </div>
+          <div class="dor-card">
+            <div class="dor-card-q">E se eu me sentir sozinha depois?</div>
+            <div class="dor-card-a">O puerpério é o que ninguém fala antes. Saúde mental, a nova relação a dois.</div>
+          </div>
+        </div>
       </div>
-      <div class="dor-card">
-        <div class="dor-card-q">Vou conseguir amamentar?</div>
-        <div class="dor-card-a">A dúvida que mais aparece. Pega, dor, leite que não desce, primeiros dias.</div>
-      </div>
-      <div class="dor-card">
-        <div class="dor-card-q">E o sono do bebê?</div>
-        <div class="dor-card-a">Cada um tem uma opinião. Vocês querem entender o que é real, e como começar uma rotina sem culpa.</div>
-      </div>
-      <div class="dor-card">
-        <div class="dor-card-q">Como meu parceiro pode ajudar?</div>
-        <div class="dor-card-a">Ele quer apoiar mas não sabe como. O papel dele no parto e nos primeiros dias.</div>
-      </div>
-      <div class="dor-card">
-        <div class="dor-card-q">E se eu sofrer violência obstétrica?</div>
-        <div class="dor-card-a">O medo de não ser ouvida. Conhecer seus direitos e ter um plano de parto.</div>
-      </div>
-      <div class="dor-card">
-        <div class="dor-card-q">E se eu me sentir sozinha depois?</div>
-        <div class="dor-card-a">O puerpério é o que ninguém fala antes. Saúde mental, a nova relação a dois.</div>
+
+      <div class="dor-direita">
+        <div class="dor-header-img">
+          <img src="/images/local-portrait.jpg" alt="Mãe gestante">
+        </div>
       </div>
     </div>
   </div>
@@ -1171,7 +1210,7 @@ const HTML = `<style>
 
       <div class="palestra">
         <div class="palestra-num">01</div>
-        <div class="palestra-badge">Gestação</div>
+        <div class="palestra-badge tema-gestacao">Gestação</div>
         <div class="palestra-title">A gravidez que vocês não aprenderam na internet</div>
         <div class="palestra-desc">Preparação para o parto, saúde emocional, mudanças no corpo que ninguém te conta. Abertura forte, pro casal entrar sintonizado.</div>
         <div class="palestra-tags">
@@ -1181,7 +1220,7 @@ const HTML = `<style>
 
       <div class="palestra">
         <div class="palestra-num">02</div>
-        <div class="palestra-badge">Parto</div>
+        <div class="palestra-badge tema-parto">Parto</div>
         <div class="palestra-title">O dia do parto: do início ao fim</div>
         <div class="palestra-desc">Reconhecer o trabalho de parto, parto normal, cesárea, dor, analgesia, violência obstétrica, primeiras horas do bebê.</div>
         <div class="palestra-tags">
@@ -1191,7 +1230,7 @@ const HTML = `<style>
 
       <div class="palestra destaque">
         <div class="palestra-num">03</div>
-        <div class="palestra-badge">Tema #1</div>
+        <div class="palestra-badge tema-amamentacao">Amamentação</div>
         <div class="palestra-title">Amamentação: da teoria para o peito</div>
         <div class="palestra-desc"><strong>Eleito o tema mais desejado da pesquisa.</strong> Pega correta, posições, primeiros sete dias e dificuldades reais.</div>
         <div class="palestra-tags">
@@ -1201,7 +1240,7 @@ const HTML = `<style>
 
       <div class="palestra">
         <div class="palestra-num">04</div>
-        <div class="palestra-badge">Primeiros meses</div>
+        <div class="palestra-badge tema-sono">Primeiros meses</div>
         <div class="palestra-title">Sono do bebê e rotina real</div>
         <div class="palestra-desc">Sono seguro, ciclos do bebê, cólica, choro e expectativa realista da rotina das primeiras semanas. Sem promessa mágica.</div>
         <div class="palestra-tags">
@@ -1211,7 +1250,7 @@ const HTML = `<style>
 
       <div class="palestra span2">
         <div class="palestra-num">05</div>
-        <div class="palestra-badge">Fechamento</div>
+        <div class="palestra-badge tema-fechamento">Fechamento</div>
         <div class="palestra-title">Puerpério: o pós-parto do casal</div>
         <div class="palestra-desc">O tema que ninguém fala antes e mais pega as famílias de surpresa. Recuperação física, saúde mental, papel do parceiro e a nova relação a dois com um bebê. Fechamento acolhedor.</div>
         <div class="palestra-tags">
@@ -1296,7 +1335,7 @@ const HTML = `<style>
         <div class="incluso-tag-destaque">Destaque</div>
         <div class="incluso-icon">🅿️</div>
         <div class="incluso-title">Estacionamento gratuito</div>
-        <div class="incluso-desc">400 vagas no teatro, sem custo. Estacionem tranquilos, sem se preocupar com tempo.</div>
+        <div class="incluso-desc">Estacionamento gratuito no teatro. Estacionem tranquilos, sem se preocupar com tempo.</div>
       </div>
 
       <div class="incluso destaque">
@@ -1336,21 +1375,21 @@ const HTML = `<style>
         <div class="ingresso-desc">Pra quem vai sozinha ou cujo parceiro não pode acompanhar.</div>
         <div class="ingresso-preco-wrap">
           <span class="ingresso-cifrao">R$</span>
-          <span class="ingresso-valor">180</span>
+          <span class="ingresso-valor">150</span>
         </div>
         <div class="ingresso-condicao">1 ingresso · 1º lote</div>
         <a href="#" class="ingresso-btn">Comprar individual</a>
       </div>
 
       <div class="ingresso popular">
-        <div class="ingresso-tipo">Casal</div>
+        <div class="ingresso-tipo">Acompanhante</div>
         <div class="ingresso-desc">Você + parceiro(a). O mais escolhido, e o que o evento foi feito pra ser.</div>
         <div class="ingresso-preco-wrap">
           <span class="ingresso-cifrao">R$</span>
-          <span class="ingresso-valor">250</span>
+          <span class="ingresso-valor">280</span>
         </div>
         <div class="ingresso-condicao">2 ingressos · 1º lote</div>
-        <a href="#" class="ingresso-btn">Comprar casal</a>
+        <a href="#" class="ingresso-btn">Comprar com acompanhante</a>
       </div>
 
       <div class="ingresso">
@@ -1389,6 +1428,10 @@ const HTML = `<style>
         <div class="evento-dados-valor">BR-277, 1115 · Mossunguê<br>Curitiba/PR</div>
       </div>
     </div>
+
+    <div class="hero-mobile-img">
+      <img src="/images/hero-casal.jpg" alt="Casal grávido" />
+    </div>
   </div>
 </section>
 
@@ -1400,7 +1443,7 @@ const HTML = `<style>
       <div>
         <span class="section-tag" style="color: white;">Onde acontece</span>
         <h2 class="section-title-big">Teatro Santo Anjo.<br><span class="magenta">Unidade Barigui.</span></h2>
-        <p class="local-desc">O mais novo espaço cultural de Curitiba, no Mossunguê. 650 lugares, ar-condicionado, acessibilidade, e o que mais importa pra vocês: <strong>400 vagas de estacionamento gratuito</strong>.</p>
+        <p class="local-desc">O mais novo espaço cultural de Curitiba, no Mossunguê. Ar-condicionado, acessível, com estacionamento gratuito no local.</p>
 
         <div class="local-detalhes">
           <div class="local-detalhe">
@@ -1414,7 +1457,7 @@ const HTML = `<style>
             <div class="local-detalhe-icon">🅿️</div>
             <div>
               <div class="local-detalhe-label">Estacionamento</div>
-              <div class="local-detalhe-valor">Gratuito · 400 vagas no local</div>
+              <div class="local-detalhe-valor">Gratuito · sem custo adicional</div>
             </div>
           </div>
           <div class="local-detalhe">
@@ -1477,7 +1520,7 @@ const HTML = `<style>
 <section class="cta-final">
   <div class="container cta-final-content">
     <h2>Cheguem no parto<br><span class="accent">sabendo o que fazer.</span></h2>
-    <p>Vagas limitadas a 650 lugares. O 1º lote é o preço mais baixo da temporada.</p>
+    <p>Vagas limitadas. O 1º lote é o preço mais baixo da temporada.</p>
     <a href="#ingressos" class="btn-magenta">Quero meu ingresso agora</a>
   </div>
 </section>
