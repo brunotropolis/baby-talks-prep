@@ -96,10 +96,19 @@ const HTML = `<style>
     align-items: center;
   }
   .nav-logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .nav-logo img {
+    height: 44px;
+    width: auto;
+    display: block;
+  }
+  .nav-logo .text-fallback {
     font-family: 'Anton', sans-serif;
     font-size: 24px;
     color: white;
-    text-decoration: none;
     letter-spacing: 0.02em;
   }
   .nav-logo .accent { color: var(--magenta-bright); }
@@ -1028,9 +1037,11 @@ const HTML = `<style>
     font-size: 12px;
   }
   footer .nav-logo {
-    font-size: 22px;
     margin-bottom: 16px;
-    display: inline-block;
+    justify-content: center;
+  }
+  footer .nav-logo img {
+    height: 80px;
   }
   footer p { margin-bottom: 6px; }
   footer a { color: var(--magenta-bright); text-decoration: none; }
@@ -1059,7 +1070,9 @@ const HTML = `<style>
 <!-- ============= NAV ============= -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="nav-logo">BABY<span class="accent">TALKS</span></a>
+    <a href="#" class="nav-logo" aria-label="Baby Talks Santo Anjo">
+      <img src="/images/logo-baby-talks-dark.png" alt="Baby Talks Santo Anjo" />
+    </a>
     <a href="#ingressos" class="nav-cta">Garantir vaga</a>
   </div>
 </nav>
@@ -1071,8 +1084,7 @@ const HTML = `<style>
   <div class="container">
     <div class="hero-content">
       <div class="hero-logo">
-        <span class="big">BABY TALKS</span>
-        <span class="sub">SANTO ANJO · CURITIBA</span>
+        <span class="sub">CURITIBA · 15 DE AGOSTO · 2026</span>
       </div>
       <div class="hero-meta">
         <div class="hero-meta-item"><span class="hero-meta-icon">📅</span>15 de agosto · sábado</div>
@@ -1458,7 +1470,9 @@ const HTML = `<style>
 <!-- ============= FOOTER ============= -->
 <footer>
   <div class="container">
-    <a href="#" class="nav-logo">BABY<span style="color: var(--magenta-bright);">TALKS</span></a>
+    <a href="#" class="nav-logo footer-logo" aria-label="Baby Talks Santo Anjo">
+      <img src="/images/logo-baby-talks-dark.png" alt="Baby Talks Santo Anjo" />
+    </a>
     <p>Seminário Imersivo para Casais Grávidos · Curitiba/PR</p>
     <p>Dúvidas? Fale com a gente: <a href="mailto:contato@babytalks.com.br">contato@babytalks.com.br</a></p>
     <p style="margin-top: 20px; font-size: 10px; opacity: 0.5;">© 2026 Baby Talks Santo Anjo. Todos os direitos reservados.</p>
