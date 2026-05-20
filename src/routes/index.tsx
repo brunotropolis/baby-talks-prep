@@ -184,14 +184,14 @@ const HTML = `<style>
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 25%;
+    object-position: center 15%;
     display: block;
   }
   .hero-meta {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin: 28px 0 32px;
+    margin: 20px 0 20px;
   }
   .hero-meta-item {
     display: flex;
@@ -229,13 +229,13 @@ const HTML = `<style>
     font-size: 22px;
     color: var(--azul-suave);
     font-weight: 400;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
   }
   .hero-desc {
     font-size: 16px;
     color: var(--azul-suave);
     line-height: 1.7;
-    margin-bottom: 36px;
+    margin-bottom: 28px;
     max-width: 480px;
   }
   .hero-desc strong { color: var(--azul); font-weight: 600; }
@@ -1160,18 +1160,17 @@ const HTML = `<style>
           <div class="hero-meta-item"><span class="hero-meta-icon">📍</span>Teatro Santo Anjo · Barigui</div>
           <div class="hero-meta-item"><span class="hero-meta-icon">⏱️</span>8h30 às 13h30</div>
         </div>
-        <p class="hero-hook">Em um sábado, vocês vão criar</p>
         <h1 class="hero-headline">A sua<br>preparação<br>pra ser <span class="accent">pais.</span></h1>
         <p class="hero-sub">a que o livro não dá, o curso não entrega e o Instagram não substitui.</p>
         <p class="hero-desc">Mais do que aprender teoria, vocês vão sair sabendo <strong>o que fazer</strong> no parto, na amamentação, no sono do bebê e nas primeiras semanas em casa. 05 palestras completas com os melhores especialistas.</p>
         <a href="#ingressos" class="btn-magenta">Quero garantir meu ingresso</a>
         <div class="hero-mobile-img">
-          <img src="/images/hero-casal.jpg" alt="Casal grávido" />
+          <img src="/images/hero-casal-v2.jpg" alt="Casal grávido" />
         </div>
       </div>
       <div class="hero-img-wrap">
         <div class="hero-img-shape">
-          <img src="/images/hero-casal.jpg" alt="Casal grávido" />
+          <img src="/images/hero-casal-v2.jpg" alt="Casal grávido" />
         </div>
       </div>
     </div>
