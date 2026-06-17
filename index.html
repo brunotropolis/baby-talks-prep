@@ -1,21 +1,30 @@
-import { createFileRoute } from "@tanstack/react-router";
-
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Baby Talks Santo Anjo · Seminário Imersivo para Casais Grávidos" },
-      { name: "description", content: "Seminário imersivo para casais grávidos em Curitiba. 5 palestras, 5 horas, especialistas reais. 15 de agosto · Teatro Santo Anjo." },
-    ],
-    links: [
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=DM+Sans:wght@400;500;600;700&display=swap" },
-    ],
-  }),
-  component: Index,
-});
-
-const HTML = `<style>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Baby Talks Santo Anjo · Seminário Imersivo para Casais Grávidos</title>
+<meta name="description" content="Seminário imersivo para casais grávidos em Curitiba. 5 palestras, 5 horas, especialistas reais. 15 de agosto · Teatro Santo Anjo." />
+<link rel="canonical" href="https://babytalks.com.br/" />
+<meta property="og:title" content="Baby Talks Santo Anjo" />
+<meta property="og:description" content="Seminário imersivo para casais grávidos. 5 palestras com os melhores especialistas. 15 de agosto · Curitiba." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://babytalks.com.br/" />
+<meta property="og:image" content="https://babytalks.com.br/images/hero-casal-v2.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Baby Talks Santo Anjo" />
+<meta name="twitter:description" content="Seminário imersivo para casais grávidos. 15 de agosto · Curitiba." />
+<meta name="twitter:image" content="https://babytalks.com.br/images/hero-casal-v2.jpg" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=DM+Sans:wght@400;500;600;700&display=swap" />
+</head>
+<body>
+<style>
   @import url('https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=DM+Sans:wght@400;500;600;700&display=swap');
 
   :root {
@@ -1559,9 +1568,5 @@ const HTML = `<style>
     <p style="margin-top: 20px; font-size: 10px; opacity: 0.5;">© 2026 Baby Talks Santo Anjo. Todos os direitos reservados.</p>
   </div>
 </footer>
-
-`;
-
-function Index() {
-  return <div dangerouslySetInnerHTML={{ __html: HTML }} />;
-}
+</body>
+</html>
