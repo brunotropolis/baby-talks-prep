@@ -505,16 +505,13 @@
   .inclusos .section-title-big .magenta { color: var(--magenta); }
   .inclusos-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 18px;
     position: relative;
     z-index: 2;
     max-width: 980px;
     margin: 0 auto;
   }
-  .incluso { grid-column: span 2; }
-  .incluso:nth-child(4) { grid-column: 2 / 4; }
-  .incluso:nth-child(5) { grid-column: 4 / 6; }
   .incluso {
     background: white;
     border-radius: 12px;
@@ -559,31 +556,48 @@
     font-weight: 700;
   }
   /* faixa delicada de experiência */
-  .experiencia-extra { max-width: 860px; margin: 50px auto 0; position: relative; z-index: 2; text-align: center; }
+  .experiencia-extra { max-width: 980px; margin: 46px auto 0; position: relative; z-index: 2; text-align: left; }
   .experiencia-extra-label {
     font-size: 11px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     font-weight: 700;
     color: var(--magenta);
-    margin-bottom: 20px;
+    margin-bottom: 18px;
+    text-align: left;
   }
-  .experiencia-extra-itens { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 30px; }
+  .experiencia-extra-itens { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
   .exp-extra {
     display: flex;
     align-items: center;
-    gap: 9px;
+    gap: 14px;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+    padding: 16px 18px;
     font-family: 'Fraunces', serif;
     font-style: italic;
-    font-size: 16px;
-    color: var(--azul-suave);
-    line-height: 1.35;
+    font-size: 15px;
+    color: var(--azul);
+    line-height: 1.3;
   }
-  .exp-extra::before { content: '✦'; color: var(--magenta); font-style: normal; font-size: 12px; flex-shrink: 0; }
+  .exp-extra-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    background: var(--lilas);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    flex-shrink: 0;
+    font-style: normal;
+  }
 
   /* ============= SEÇÃO 7 — PARCEIROS ============= */
   .parceiros {
-    background: var(--branco-suave);
+    background: var(--lavanda);
     padding: 90px 0;
     position: relative;
     overflow: hidden;
@@ -1099,12 +1113,6 @@
       </div>
 
       <div class="incluso">
-        <div class="incluso-icon">📋</div>
-        <div class="incluso-title">Material complementar</div>
-        <div class="incluso-desc">Material de apoio com o resumo das palestras e checklists práticos pra usar no dia a dia.</div>
-      </div>
-
-      <div class="incluso">
         <div class="incluso-icon">📜</div>
         <div class="incluso-title">Certificado digital</div>
         <div class="incluso-desc">Certificado de participação enviado por e-mail depois do evento.</div>
@@ -1120,31 +1128,15 @@
     <div class="experiencia-extra">
       <div class="experiencia-extra-label">E mais, pra dar peso à experiência</div>
       <div class="experiencia-extra-itens">
-        <span class="exp-extra">Ambiente confortável e acolhedor</span>
-        <span class="exp-extra">Encontro com profissionais que acompanham famílias todos os dias</span>
-        <span class="exp-extra">Um momento para viver a gestação de forma ainda mais especial</span>
+        <div class="exp-extra"><span class="exp-extra-icon">🛋️</span>Ambiente confortável e acolhedor</div>
+        <div class="exp-extra"><span class="exp-extra-icon">👩‍⚕️</span>Encontro com profissionais que acompanham famílias todos os dias</div>
+        <div class="exp-extra"><span class="exp-extra-icon">🌸</span>Um momento para viver a gestação de forma ainda mais especial</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============= SEÇÃO 7 — PARCEIROS ============= -->
-<!-- ⚠️ TODO: substituir slots placeholder pelos logos dos parceiros -->
-<section class="parceiros">
-  <span class="watermark">PARCEIROS</span>
-  <div class="container">
-    <span class="section-tag">Quem apoia o Baby Talks</span>
-    <h2 class="section-title-big">Parceiros</h2>
-    <div class="parceiros-grid">
-      <div class="parceiro-slot">Em breve</div>
-      <div class="parceiro-slot">Em breve</div>
-      <div class="parceiro-slot">Em breve</div>
-      <div class="parceiro-slot">Em breve</div>
-    </div>
-  </div>
-</section>
-
-<!-- ============= SEÇÃO 8 — INGRESSOS ============= -->
+<!-- ============= SEÇÃO 7 — INGRESSOS ============= -->
 <section class="ingressos" id="ingressos">
   <span class="watermark">INGRESSOS</span>
   <div class="container" style="text-align:center;">
@@ -1255,6 +1247,22 @@
           allowfullscreen
         ></iframe>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= PARCEIROS (após o mapa) ============= -->
+<!-- ⚠️ TODO: substituir slots placeholder pelos logos dos parceiros -->
+<section class="parceiros">
+  <span class="watermark">PARCEIROS</span>
+  <div class="container">
+    <span class="section-tag">Quem apoia o Baby Talks</span>
+    <h2 class="section-title-big">Parceiros</h2>
+    <div class="parceiros-grid">
+      <div class="parceiro-slot">Em breve</div>
+      <div class="parceiro-slot">Em breve</div>
+      <div class="parceiro-slot">Em breve</div>
+      <div class="parceiro-slot">Em breve</div>
     </div>
   </div>
 </section>
