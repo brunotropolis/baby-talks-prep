@@ -493,53 +493,93 @@
   .palestrante-ig svg { width: 16px; height: 16px; flex-shrink: 0; }
   .palestrante-bio-marca { font-style: italic; opacity: 0.75; }
 
-  /* ============= SEÇÃO 6 — EXPERIÊNCIA (CHECKLIST) ============= */
-  .experiencia {
+  /* ============= SEÇÃO 6 — ESTÁ INCLUSO (cards) + experiência (faixa delicada) ============= */
+  .inclusos {
     background: var(--rosa-bebe);
     padding: 100px 0;
     position: relative;
     overflow: hidden;
     color: var(--azul);
   }
-  .experiencia .watermark { color: var(--magenta); opacity: 0.08; left: -40px; top: 80px; }
-  .experiencia .section-title-big .magenta { color: var(--magenta); }
-  .experiencia-grid {
+  .inclusos .watermark { color: var(--magenta); opacity: 0.08; left: -40px; top: 80px; }
+  .inclusos .section-title-big .magenta { color: var(--magenta); }
+  .inclusos-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 18px;
     position: relative;
     z-index: 2;
     max-width: 980px;
     margin: 0 auto;
   }
-  .exp-item {
+  .incluso { grid-column: span 2; }
+  .incluso:nth-child(4) { grid-column: 2 / 4; }
+  .incluso:nth-child(5) { grid-column: 4 / 6; }
+  .incluso {
     background: white;
-    border: 1px solid rgba(255,255,255,0.7);
-    border-radius: 10px;
-    padding: 22px 24px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    font-size: 15px;
-    font-weight: 500;
+    border-radius: 12px;
+    padding: 28px;
     color: var(--azul);
-    line-height: 1.4;
-    box-shadow: 0 4px 14px rgba(31,42,86,0.05);
+    position: relative;
+    box-shadow: 0 4px 14px rgba(31, 42, 86, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transition: all 0.25s;
   }
-  .exp-item::before {
-    content: '✓';
-    flex-shrink: 0;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: var(--verde);
-    color: white;
+  .incluso:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(201, 95, 163, 0.14); }
+  .incluso.destaque {
+    background: linear-gradient(180deg, white 0%, var(--lavanda) 100%);
+    border: 2px solid var(--lilas);
+  }
+  .incluso-icon {
+    width: 52px;
+    height: 52px;
+    background: var(--lilas);
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 24px;
+    margin-bottom: 18px;
+    color: white;
+  }
+  .incluso.destaque .incluso-icon { background: var(--magenta); }
+  .incluso-title { font-family: 'Fraunces', serif; font-size: 19px; color: var(--azul); font-weight: 600; margin-bottom: 8px; }
+  .incluso-desc { font-size: 13.5px; color: var(--azul-suave); line-height: 1.55; }
+  .incluso-tag-destaque {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: var(--magenta);
+    color: white;
+    font-size: 9px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
     font-weight: 700;
   }
+  /* faixa delicada de experiência */
+  .experiencia-extra { max-width: 860px; margin: 50px auto 0; position: relative; z-index: 2; text-align: center; }
+  .experiencia-extra-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--magenta);
+    margin-bottom: 20px;
+  }
+  .experiencia-extra-itens { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 30px; }
+  .exp-extra {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--azul-suave);
+    line-height: 1.35;
+  }
+  .exp-extra::before { content: '✦'; color: var(--magenta); font-style: normal; font-size: 12px; flex-shrink: 0; }
 
   /* ============= SEÇÃO 7 — PARCEIROS ============= */
   .parceiros {
@@ -813,7 +853,9 @@
     .aprende-grid { grid-template-columns: 1fr; }
     .palestra-title { max-width: 100%; }
     .palestrantes-grid { grid-template-columns: 1fr; max-width: 420px; }
-    .experiencia-grid { grid-template-columns: 1fr; }
+    .inclusos-grid { grid-template-columns: 1fr; }
+    .incluso, .incluso:nth-child(4), .incluso:nth-child(5) { grid-column: span 1; }
+    .exp-extra { font-size: 15px; }
     .parceiros-grid { grid-template-columns: repeat(2, 1fr); }
     .ingressos-grid { grid-template-columns: 1fr; }
     .inclui-grid { grid-template-columns: 1fr; }
@@ -1034,24 +1076,54 @@
   </div>
 </section>
 
-<!-- ============= SEÇÃO 6 — EXPERIÊNCIA ============= -->
-<section class="experiencia">
-  <span class="watermark">DETALHES</span>
+<!-- ============= SEÇÃO 6 — ESTÁ INCLUSO ============= -->
+<section class="inclusos">
+  <span class="watermark">INCLUSO</span>
   <div class="container">
-    <span class="section-tag">Está tudo pensado</span>
+    <span class="section-tag">Está incluso no ingresso</span>
     <h2 class="section-title-big">Uma experiência pensada<br><span class="magenta">em cada detalhe.</span></h2>
-    <p class="section-sub">A ideia é que você viva a manhã inteira sem se preocupar com nada além de aproveitar.</p>
+    <p class="section-sub">Vocês não levam só conteúdo. Levam material pra revisitar, momentos pra viver e um cuidado pensado do começo ao fim.</p>
 
-    <div class="experiencia-grid">
-      <div class="exp-item">Teatro Santo Anjo Barigui</div>
-      <div class="exp-item">Ambiente confortável e acolhedor</div>
-      <div class="exp-item">Coffee break</div>
-      <div class="exp-item">Sorteios especiais</div>
-      <div class="exp-item">Material complementar</div>
-      <div class="exp-item">Certificado digital</div>
-      <div class="exp-item">Área de membros com conteúdos de apoio</div>
-      <div class="exp-item">Encontro com profissionais que acompanham famílias diariamente</div>
-      <div class="exp-item">Um momento para viver a gestação de forma ainda mais especial</div>
+    <div class="inclusos-grid">
+      <div class="incluso destaque">
+        <div class="incluso-tag-destaque">Destaque</div>
+        <div class="incluso-icon">📱</div>
+        <div class="incluso-title">Área de membros</div>
+        <div class="incluso-desc">Acesso a uma área de membros com conteúdos de apoio pra revisitar tudo sempre que precisar.</div>
+      </div>
+
+      <div class="incluso">
+        <div class="incluso-icon">☕</div>
+        <div class="incluso-title">Coffee break</div>
+        <div class="incluso-desc">Um intervalo gostoso pra descansar, lanchar e trocar experiências com outras famílias.</div>
+      </div>
+
+      <div class="incluso">
+        <div class="incluso-icon">📋</div>
+        <div class="incluso-title">Material complementar</div>
+        <div class="incluso-desc">Material de apoio com o resumo das palestras e checklists práticos pra usar no dia a dia.</div>
+      </div>
+
+      <div class="incluso">
+        <div class="incluso-icon">📜</div>
+        <div class="incluso-title">Certificado digital</div>
+        <div class="incluso-desc">Certificado de participação enviado por e-mail depois do evento.</div>
+      </div>
+
+      <div class="incluso">
+        <div class="incluso-icon">🎁</div>
+        <div class="incluso-title">Sorteios</div>
+        <div class="incluso-desc">Sorteios especiais ao longo da manhã, com brindes selecionados dos parceiros.</div>
+      </div>
+    </div>
+
+    <div class="experiencia-extra">
+      <div class="experiencia-extra-label">E mais, pra dar peso à experiência</div>
+      <div class="experiencia-extra-itens">
+        <span class="exp-extra">Ambiente confortável e acolhedor</span>
+        <span class="exp-extra">Encontro com profissionais que acompanham famílias todos os dias</span>
+        <span class="exp-extra">Um momento para viver a gestação de forma ainda mais especial</span>
+      </div>
     </div>
   </div>
 </section>
