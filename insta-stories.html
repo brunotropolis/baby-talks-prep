@@ -151,7 +151,7 @@
   /* ============ DATA (menor, discreta) ============ */
   .data-big {
     position: absolute;
-    top: 1330px; left: 0; right: 0;
+    top: 1320px; left: 0; right: 0;
     text-align: center;
     font-family: 'Anton', sans-serif;
     font-size: 96px;
@@ -165,7 +165,7 @@
   /* ============ INFO BOX (dados do evento, MAIOR) ============ */
   .info-box {
     position: absolute;
-    top: 1420px; left: 80px; right: 80px;
+    top: 1480px; left: 80px; right: 80px;
     z-index: 10;
     background: linear-gradient(135deg, var(--lilas) 0%, var(--lilas-e) 100%);
     border-radius: 24px;
@@ -218,42 +218,30 @@
   /* ============ CHAMADA BIO ============ */
   .bio-cta {
     position: absolute;
-    bottom: 55px; left: 80px; right: 80px;
+    bottom: 90px; left: 80px; right: 80px;
     text-align: center;
     z-index: 10;
   }
   .bio-cta .arrow {
     font-family: 'DM Sans', sans-serif;
-    font-size: 13px; font-weight: 700;
+    font-size: 13px; font-weight: 800;
     letter-spacing: 0.36em; text-transform: uppercase;
     color: var(--magenta-e);
-    margin-bottom: 14px;
+    margin-bottom: 16px;
   }
   .bio-cta .msg {
     font-family: 'Fraunces', serif;
     font-style: italic;
-    font-weight: 500;
-    font-size: 32px;
+    font-weight: 600;
+    font-size: 36px;
     color: var(--azul);
     line-height: 1.22;
     letter-spacing: -0.008em;
   }
   .bio-cta .msg strong {
-    color: var(--magenta);
-    font-weight: 600;
-  }
-  .bio-cta .handle {
-    font-family: 'DM Sans', sans-serif;
+    color: var(--magenta-e);
     font-weight: 700;
-    font-size: 20px;
-    letter-spacing: 0.06em;
-    color: var(--azul);
-    margin-top: 8px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
   }
-  .bio-cta .handle svg { width: 22px; height: 22px; }
 </style>
 </head>
 <body>
@@ -305,10 +293,6 @@
 <div class="bio-cta">
   <div class="arrow">ingressos e mais informações</div>
   <div class="msg">no <strong>link da bio</strong></div>
-  <div class="handle">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
-    @babytalks.evento
-  </div>
 </div>
 
 </body>
