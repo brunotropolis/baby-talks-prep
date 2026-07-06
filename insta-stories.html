@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Baby Talks — Stories</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..800&display=swap');
+
+  :root {
+    --branco:  #F8F7F4;
+    --lilas:   #8E9BD1;
+    --lilas-e: #6F7EB8;
+    --magenta: #C95FA3;
+    --magenta-e: #9B3775;
+    --azul:    #1F2A56;
+    --azul-soft: rgba(31,42,86,0.65);
+    --lavanda: #E4E6F2;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1920px; overflow:hidden; }
+  body {
+    background: linear-gradient(180deg, var(--lavanda) 0%, var(--branco) 40%, var(--branco) 100%);
+    color: var(--azul);
+    font-family: 'DM Sans', sans-serif;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ============ WATERMARKS ============ */
+  .watermark {
+    position: absolute;
+    top: 500px; left: -50px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 320px;
+    line-height: 0.95;
+    color: var(--lilas);
+    opacity: 0.09;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    letter-spacing: 0.02em;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+  }
+  .watermark-right {
+    position: absolute;
+    bottom: 400px; right: -50px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 280px;
+    line-height: 0.95;
+    color: var(--magenta);
+    opacity: 0.055;
+    writing-mode: vertical-rl;
+    letter-spacing: 0.02em;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* ============ TOP BAR ============ */
+  .top-bar {
+    position: absolute;
+    top: 90px; left: 80px; right: 80px;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 20;
+  }
+  .top-logo img { height: 76px; width: auto; display: block; }
+  .top-right { text-align: right; }
+  .top-right .apresenta {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.38em; text-transform: uppercase;
+    color: var(--magenta);
+    margin-bottom: 5px;
+  }
+  .top-right .edicao {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--azul-soft);
+  }
+
+  /* ============ HERO PHOTO ============ */
+  .hero-wrap {
+    position: absolute;
+    top: 220px; left: 80px; right: 80px;
+    height: 780px;
+    z-index: 5;
+  }
+  .hero-img-shape {
+    width: 100%; height: 100%;
+    border-radius: 200px 44px 160px 44px;
+    overflow: hidden;
+    background: var(--lavanda);
+    box-shadow: 0 44px 110px rgba(31,42,86,0.24);
+    position: relative;
+  }
+  .hero-img-shape img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 45%;
+    display: block;
+  }
+  .hero-img-shape::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(31,42,86,0.02) 0%, rgba(31,42,86,0.0) 40%, rgba(31,42,86,0.14) 100%);
+    pointer-events: none;
+  }
+
+  /* ============ TAGLINE ============ */
+  .tagline {
+    position: absolute;
+    top: 1060px; left: 100px; right: 100px;
+    text-align: center;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 50px;
+    line-height: 1.14;
+    color: var(--azul);
+    letter-spacing: -0.012em;
+    z-index: 10;
+  }
+  .tagline .destaque { color: var(--magenta); font-style: italic; }
+  .tagline .aspa {
+    font-family: 'Fraunces', serif;
+    color: var(--lilas);
+    font-size: 80px;
+    line-height: 0;
+    vertical-align: -18px;
+    display: inline-block;
+    margin: 0 4px;
+  }
+
+  /* ============ DIVIDER ============ */
+  .divider {
+    position: absolute;
+    top: 1310px; left: 50%; transform: translateX(-50%);
+    width: 90px; height: 2px;
+    background: var(--magenta);
+    z-index: 10;
+  }
+
+  /* ============ DATA MONUMENTAL ============ */
+  .data-big {
+    position: absolute;
+    top: 1345px; left: 0; right: 0;
+    text-align: center;
+    font-family: 'Anton', sans-serif;
+    font-size: 148px;
+    line-height: 0.95;
+    color: var(--azul);
+    letter-spacing: 0.008em;
+    z-index: 10;
+  }
+  .data-big .mes { color: var(--magenta); }
+
+  .data-sub {
+    position: absolute;
+    top: 1490px; left: 0; right: 0;
+    text-align: center;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 26px;
+    color: var(--azul-soft);
+    z-index: 10;
+  }
+  .data-sub .sep { color: var(--magenta); margin: 0 12px; }
+
+  /* ============ INFO BOX (endereço) ============ */
+  .info-box {
+    position: absolute;
+    top: 1580px; left: 80px; right: 80px;
+    z-index: 10;
+    background: linear-gradient(135deg, var(--lilas) 0%, var(--lilas-e) 100%);
+    border-radius: 20px;
+    padding: 32px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    box-shadow: 0 22px 55px rgba(111,126,184,0.34);
+  }
+  .info-item { text-align: center; color: white; position: relative; }
+  .info-item:not(:last-child)::after {
+    content: '';
+    position: absolute; right: -10px; top: 12%; bottom: 12%;
+    width: 1px; background: rgba(255,255,255,0.30);
+  }
+  .info-ico { font-size: 24px; margin-bottom: 8px; display: block; }
+  .info-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    opacity: 0.86;
+    margin-bottom: 6px;
+  }
+  .info-valor {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.25;
+  }
+
+  /* ============ SITE ============ */
+  .site {
+    position: absolute;
+    bottom: 120px; left: 0; right: 0;
+    text-align: center;
+    z-index: 10;
+  }
+  .site .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.38em; text-transform: uppercase;
+    color: var(--lilas-e);
+    margin-bottom: 10px;
+  }
+  .site .url {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 40px;
+    color: var(--azul);
+    letter-spacing: -0.008em;
+  }
+</style>
+</head>
+<body>
+
+<div class="watermark">Baby</div>
+<div class="watermark-right">Talks</div>
+
+<div class="top-bar">
+  <div class="top-logo">
+    <img src="images/logo-baby-talks.png" alt="Baby Talks Santo Anjo">
+  </div>
+  <div class="top-right">
+    <div class="apresenta">apresenta</div>
+    <div class="edicao">1ª edição · 2026</div>
+  </div>
+</div>
+
+<div class="hero-wrap">
+  <div class="hero-img-shape">
+    <img src="images/hero-casal-v2.jpg" alt="Casal grávido">
+  </div>
+</div>
+
+<div class="tagline">
+  <span class="aspa">“</span>O encontro que toda gestante gostaria de viver <span class="destaque">antes da chegada do bebê</span>.<span class="aspa">”</span>
+</div>
+
+<div class="divider"></div>
+
+<div class="data-big">22 <span class="mes">AGOSTO</span></div>
+<div class="data-sub">Sábado <span class="sep">·</span> 8h30 às 13h30</div>
+
+<div class="info-box">
+  <div class="info-item">
+    <span class="info-ico">📍</span>
+    <div class="info-label">Onde</div>
+    <div class="info-valor">Teatro Santo Anjo<br>Barigui · Curitiba</div>
+  </div>
+  <div class="info-item">
+    <span class="info-ico">🎟️</span>
+    <div class="info-label">Ingressos</div>
+    <div class="info-valor">Individual R$180<br>Duplo R$260</div>
+  </div>
+</div>
+
+<div class="site">
+  <div class="eyebrow">saiba mais</div>
+  <div class="url">babytalks.com.br</div>
+</div>
+
+</body>
+</html>
