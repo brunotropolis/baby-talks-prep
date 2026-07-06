@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Baby Talks — Post Instagram</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..800&display=swap');
+
+  :root {
+    --branco:  #F8F7F4;
+    --lilas:   #8E9BD1;
+    --lilas-e: #6F7EB8;
+    --magenta: #C95FA3;
+    --magenta-e: #9B3775;
+    --azul:    #1F2A56;
+    --azul-soft: rgba(31,42,86,0.65);
+    --lavanda: #E4E6F2;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body {
+    background: linear-gradient(180deg, var(--lavanda) 0%, var(--branco) 55%, var(--branco) 100%);
+    color: var(--azul);
+    font-family: 'DM Sans', sans-serif;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ============ WATERMARK VERTICAL LATERAL ============ */
+  .watermark {
+    position: absolute;
+    top: 300px; left: -30px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 260px;
+    line-height: 0.95;
+    color: var(--lilas);
+    opacity: 0.10;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    letter-spacing: 0.02em;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+  }
+  .watermark-right {
+    position: absolute;
+    bottom: 260px; right: -30px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 220px;
+    line-height: 0.95;
+    color: var(--magenta);
+    opacity: 0.06;
+    writing-mode: vertical-rl;
+    letter-spacing: 0.02em;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* ============ BARRA TOP ============ */
+  .top-bar {
+    position: absolute;
+    top: 50px; left: 70px; right: 70px;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 20;
+  }
+  .top-logo img { height: 68px; width: auto; display: block; }
+  .top-right { text-align: right; }
+  .top-right .apresenta {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.36em; text-transform: uppercase;
+    color: var(--magenta);
+    margin-bottom: 4px;
+  }
+  .top-right .edicao {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--azul-soft);
+  }
+
+  /* ============ HERO PHOTO SHAPE (grande, protagonista) ============ */
+  .hero-wrap {
+    position: absolute;
+    top: 160px; left: 70px; right: 70px;
+    height: 600px;
+    z-index: 5;
+  }
+  .hero-img-shape {
+    width: 100%; height: 100%;
+    border-radius: 180px 40px 140px 40px;
+    overflow: hidden;
+    background: var(--lavanda);
+    box-shadow: 0 40px 100px rgba(31,42,86,0.22);
+    position: relative;
+  }
+  .hero-img-shape img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 65%;
+    display: block;
+  }
+  .hero-img-shape::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(31,42,86,0.02) 0%, rgba(31,42,86,0.0) 40%, rgba(31,42,86,0.12) 100%);
+    pointer-events: none;
+  }
+
+  /* Detalhe: pequena tag magenta sobreposta canto da foto */
+  .tag-corner {
+    position: absolute;
+    top: -18px; right: 40px;
+    background: var(--magenta);
+    color: white;
+    padding: 12px 22px;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    box-shadow: 0 14px 32px rgba(201,95,163,0.42);
+    z-index: 15;
+  }
+
+  /* ============ TAGLINE ============ */
+  .tagline {
+    position: absolute;
+    top: 830px; left: 100px; right: 100px;
+    text-align: center;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 1.14;
+    color: var(--azul);
+    letter-spacing: -0.012em;
+    z-index: 10;
+  }
+  .tagline .destaque { color: var(--magenta); font-style: italic; }
+  .tagline .aspa {
+    font-family: 'Fraunces', serif;
+    color: var(--lilas);
+    font-size: 76px;
+    line-height: 0;
+    vertical-align: -18px;
+    display: inline-block;
+    margin: 0 4px;
+  }
+
+  /* ============ DIVIDER MAGENTA ============ */
+  .divider {
+    position: absolute;
+    top: 1070px; left: 50%; transform: translateX(-50%);
+    width: 80px; height: 2px;
+    background: var(--magenta);
+    z-index: 10;
+  }
+
+  /* ============ DATA ============ */
+  .data-eyebrow {
+    position: absolute;
+    top: 1100px; left: 0; right: 0;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.40em; text-transform: uppercase;
+    color: var(--lilas-e);
+    z-index: 10;
+  }
+  .data-big {
+    position: absolute;
+    top: 1130px; left: 0; right: 0;
+    text-align: center;
+    font-family: 'Anton', sans-serif;
+    font-size: 128px;
+    line-height: 0.95;
+    color: var(--azul);
+    letter-spacing: 0.008em;
+    z-index: 10;
+  }
+  .data-big .mes { color: var(--magenta); }
+  .data-sub {
+    position: absolute;
+    top: 1250px; left: 0; right: 0;
+    text-align: center;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--azul-soft);
+    z-index: 10;
+  }
+  .data-sub .sep { color: var(--magenta); margin: 0 10px; }
+
+  /* ============ FOOTER ============ */
+  .footer {
+    position: absolute;
+    bottom: 40px; left: 70px; right: 70px;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 10;
+  }
+  .footer .site {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--azul);
+  }
+  .footer .insta {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--azul);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .footer .insta svg { width: 15px; height: 15px; }
+</style>
+</head>
+<body>
+
+<div class="watermark">Baby</div>
+<div class="watermark-right">Talks</div>
+
+<div class="top-bar">
+  <div class="top-logo">
+    <img src="images/logo-baby-talks.png" alt="Baby Talks Santo Anjo">
+  </div>
+  <div class="top-right">
+    <div class="apresenta">apresenta</div>
+    <div class="edicao">1ª edição · 2026</div>
+  </div>
+</div>
+
+<div class="hero-wrap">
+  <div class="tag-corner">Save the date</div>
+  <div class="hero-img-shape">
+    <img src="images/hero-casal-v2.jpg" alt="Casal grávido">
+  </div>
+</div>
+
+<div class="tagline">
+  <span class="aspa">“</span>O encontro que toda gestante gostaria de viver <span class="destaque">antes da chegada do bebê</span>.<span class="aspa">”</span>
+</div>
+
+<div class="divider"></div>
+
+<div class="data-eyebrow">seminário imersivo</div>
+<div class="data-big">22 <span class="mes">AGOSTO</span></div>
+<div class="data-sub">Sábado <span class="sep">·</span> Teatro Santo Anjo <span class="sep">·</span> Curitiba</div>
+
+<div class="footer">
+  <div class="site">babytalks.com.br</div>
+  <div class="insta">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+    @babytalks.evento
+  </div>
+</div>
+
+</body>
+</html>
