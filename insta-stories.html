@@ -148,13 +148,13 @@
     z-index: 10;
   }
 
-  /* ============ DATA MONUMENTAL ============ */
+  /* ============ DATA (menor, discreta) ============ */
   .data-big {
     position: absolute;
-    top: 1345px; left: 0; right: 0;
+    top: 1330px; left: 0; right: 0;
     text-align: center;
     font-family: 'Anton', sans-serif;
-    font-size: 148px;
+    font-size: 96px;
     line-height: 0.95;
     color: var(--azul);
     letter-spacing: 0.008em;
@@ -162,66 +162,85 @@
   }
   .data-big .mes { color: var(--magenta); }
 
-  .data-sub {
-    position: absolute;
-    top: 1490px; left: 0; right: 0;
-    text-align: center;
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-size: 26px;
-    color: var(--azul-soft);
-    z-index: 10;
-  }
-  .data-sub .sep { color: var(--magenta); margin: 0 12px; }
-
-  /* ============ INFO BOX (endereço) ============ */
+  /* ============ INFO BOX (dados do evento, MAIOR) ============ */
   .info-box {
     position: absolute;
-    top: 1570px; left: 80px; right: 80px;
+    top: 1470px; left: 80px; right: 80px;
     z-index: 10;
     background: linear-gradient(135deg, var(--lilas) 0%, var(--lilas-e) 100%);
-    border-radius: 20px;
-    padding: 28px 36px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    border-radius: 24px;
+    padding: 42px 44px;
     box-shadow: 0 22px 55px rgba(111,126,184,0.34);
   }
-  .info-item { text-align: center; color: white; position: relative; }
-  .info-item:not(:last-child)::after {
-    content: '';
-    position: absolute; right: -8px; top: 14%; bottom: 14%;
-    width: 1px; background: rgba(255,255,255,0.30);
+  .info-row {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    color: white;
+    padding: 14px 0;
   }
-  .info-ico { font-size: 22px; margin-bottom: 6px; display: block; }
+  .info-row + .info-row {
+    border-top: 1px solid rgba(255,255,255,0.22);
+  }
+  .info-ico-wrap {
+    flex-shrink: 0;
+    width: 62px; height: 62px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.16);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+  }
+  .info-text { flex: 1; }
   .info-label {
     font-family: 'DM Sans', sans-serif;
-    font-size: 10px; font-weight: 700;
-    letter-spacing: 0.28em; text-transform: uppercase;
-    opacity: 0.86;
-    margin-bottom: 5px;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.32em; text-transform: uppercase;
+    opacity: 0.82;
+    margin-bottom: 4px;
   }
   .info-valor {
     font-family: 'Fraunces', serif;
     font-weight: 600;
+    font-size: 24px;
+    line-height: 1.25;
+    letter-spacing: -0.005em;
+  }
+  .info-valor .aux {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
     font-size: 18px;
-    line-height: 1.22;
+    opacity: 0.88;
+    display: block;
+    margin-top: 2px;
   }
 
-  /* ============ SITE ============ */
-  .site {
+  /* ============ CHAMADA BIO ============ */
+  .bio-cta {
     position: absolute;
-    bottom: 90px; left: 0; right: 0;
+    bottom: 80px; left: 80px; right: 80px;
     text-align: center;
     z-index: 10;
   }
-  .site .url {
+  .bio-cta .arrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 700;
+    letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--magenta);
+    margin-bottom: 12px;
+  }
+  .bio-cta .msg {
     font-family: 'Fraunces', serif;
     font-style: italic;
-    font-weight: 600;
-    font-size: 42px;
+    font-weight: 500;
+    font-size: 30px;
     color: var(--azul);
+    line-height: 1.25;
     letter-spacing: -0.008em;
+  }
+  .bio-cta .msg strong {
+    color: var(--magenta);
+    font-weight: 600;
   }
 </style>
 </head>
@@ -253,23 +272,27 @@
 <div class="divider"></div>
 
 <div class="data-big">22 <span class="mes">AGOSTO</span></div>
-<div class="data-sub">Sábado <span class="sep">·</span> 8h30 às 13h30</div>
 
 <div class="info-box">
-  <div class="info-item">
-    <span class="info-ico">📍</span>
-    <div class="info-label">Onde</div>
-    <div class="info-valor">Teatro Santo Anjo<br>Barigui · Curitiba</div>
+  <div class="info-row">
+    <div class="info-ico-wrap">📅</div>
+    <div class="info-text">
+      <div class="info-label">Quando</div>
+      <div class="info-valor">Sábado, 22 de agosto<span class="aux">8h30 às 13h30</span></div>
+    </div>
   </div>
-  <div class="info-item">
-    <span class="info-ico">🎟️</span>
-    <div class="info-label">Ingressos</div>
-    <div class="info-valor">Individual R$180<br>Duplo R$260</div>
+  <div class="info-row">
+    <div class="info-ico-wrap">📍</div>
+    <div class="info-text">
+      <div class="info-label">Onde</div>
+      <div class="info-valor">Teatro Santo Anjo · Barigui<span class="aux">BR-277, 1115 · Curitiba/PR</span></div>
+    </div>
   </div>
 </div>
 
-<div class="site">
-  <div class="url">babytalks.com.br</div>
+<div class="bio-cta">
+  <div class="arrow">↓ ingressos e mais infos ↓</div>
+  <div class="msg">no <strong>link da bio</strong><br>@babytalks.evento</div>
 </div>
 
 </body>
