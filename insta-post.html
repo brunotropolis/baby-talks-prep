@@ -90,7 +90,7 @@
   .hero-wrap {
     position: absolute;
     top: 160px; left: 70px; right: 70px;
-    height: 600px;
+    height: 720px;
     z-index: 5;
   }
   .hero-img-shape {
@@ -104,7 +104,7 @@
   .hero-img-shape img {
     width: 100%; height: 100%;
     object-fit: cover;
-    object-position: center 65%;
+    object-position: center 45%;
     display: block;
   }
   .hero-img-shape::after {
@@ -132,12 +132,12 @@
   /* ============ TAGLINE ============ */
   .tagline {
     position: absolute;
-    top: 830px; left: 100px; right: 100px;
+    top: 920px; left: 100px; right: 100px;
     text-align: center;
     font-family: 'Fraunces', serif;
     font-style: italic;
     font-weight: 500;
-    font-size: 48px;
+    font-size: 42px;
     line-height: 1.14;
     color: var(--azul);
     letter-spacing: -0.012em;
@@ -157,7 +157,7 @@
   /* ============ DIVIDER MAGENTA ============ */
   .divider {
     position: absolute;
-    top: 1070px; left: 50%; transform: translateX(-50%);
+    top: 1080px; left: 50%; transform: translateX(-50%);
     width: 80px; height: 2px;
     background: var(--magenta);
     z-index: 10;
@@ -166,20 +166,20 @@
   /* ============ DATA ============ */
   .data-eyebrow {
     position: absolute;
-    top: 1100px; left: 0; right: 0;
+    top: 1108px; left: 0; right: 0;
     text-align: center;
     font-family: 'DM Sans', sans-serif;
-    font-size: 11px; font-weight: 700;
+    font-size: 12px; font-weight: 700;
     letter-spacing: 0.40em; text-transform: uppercase;
     color: var(--lilas-e);
     z-index: 10;
   }
   .data-big {
     position: absolute;
-    top: 1130px; left: 0; right: 0;
+    top: 1140px; left: 0; right: 0;
     text-align: center;
     font-family: 'Anton', sans-serif;
-    font-size: 128px;
+    font-size: 132px;
     line-height: 0.95;
     color: var(--azul);
     letter-spacing: 0.008em;
@@ -188,37 +188,15 @@
   .data-big .mes { color: var(--magenta); }
   .data-sub {
     position: absolute;
-    top: 1250px; left: 0; right: 0;
+    top: 1268px; left: 0; right: 0;
     text-align: center;
     font-family: 'Fraunces', serif;
     font-style: italic;
-    font-size: 20px;
+    font-size: 22px;
     color: var(--azul-soft);
     z-index: 10;
   }
   .data-sub .sep { color: var(--magenta); margin: 0 10px; }
-
-  /* ============ FOOTER ============ */
-  .footer {
-    position: absolute;
-    bottom: 40px; left: 70px; right: 70px;
-    display: flex; justify-content: space-between; align-items: center;
-    z-index: 10;
-  }
-  .footer .site {
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-size: 16px;
-    color: var(--azul);
-  }
-  .footer .insta {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px; font-weight: 700;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--azul);
-    display: flex; align-items: center; gap: 8px;
-  }
-  .footer .insta svg { width: 15px; height: 15px; }
 </style>
 </head>
 <body>
@@ -252,14 +230,6 @@
 <div class="data-eyebrow">seminário imersivo</div>
 <div class="data-big">22 <span class="mes">AGOSTO</span></div>
 <div class="data-sub">Sábado <span class="sep">·</span> Teatro Santo Anjo <span class="sep">·</span> Curitiba</div>
-
-<div class="footer">
-  <div class="site">babytalks.com.br</div>
-  <div class="insta">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
-    @babytalks.evento
-  </div>
-</div>
 
 </body>
 </html>
