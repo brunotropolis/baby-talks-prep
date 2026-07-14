@@ -704,6 +704,10 @@
     transition: filter 0.3s ease;
   }
   .parceiro-card:hover img { filter: grayscale(0%); }
+  /* Cards com logo em fundo colorido (branco em cinza/teal, etc): preservar o fundo do arquivo */
+  .parceiro-card.full-bg { padding: 0; overflow: hidden; background: transparent; }
+  .parceiro-card.full-bg img { max-width: 100%; max-height: 100%; width: 100%; height: 100%; object-fit: cover; filter: none; }
+  .parceiro-card.full-bg:hover img { filter: none; }
   .parceiro-slot {
     background: white;
     border: 1px dashed var(--lilas-claro);
@@ -1380,12 +1384,15 @@
     <h2 class="section-title-big">Parceiros, apoiadores<br>e <span class="magenta">patrocinadores</span></h2>
     <div class="parceiros-grid">
       <!-- Adicionar logos aqui conforme forem confirmando. Exemplo:
-      <div class="parceiro-card"><img src="images/parceiros/nome-do-parceiro.png" alt="Nome do Parceiro"></div>
+      <div class="parceiro-card"><img src="images/parceiros/nome.png" alt="Nome"></div>
+      Se o logo for claro em fundo colorido (branco em cinza/teal), adicione a classe `full-bg`:
+      <div class="parceiro-card full-bg"><img src="images/parceiros/nome.png" alt="Nome"></div>
       -->
-      <div class="parceiro-slot">Em breve</div>
-      <div class="parceiro-slot">Em breve</div>
-      <div class="parceiro-slot">Em breve</div>
-      <div class="parceiro-slot">Em breve</div>
+      <div class="parceiro-card"><img src="images/parceiros/boa-gravidez.png" alt="Boa Gravidez"></div>
+      <div class="parceiro-card full-bg"><img src="images/parceiros/nutrigeston.png" alt="Nutrigeston"></div>
+      <div class="parceiro-card"><img src="images/parceiros/muita-festa.png" alt="Muita Festa"></div>
+      <div class="parceiro-card"><img src="images/parceiros/vila-carlota.png" alt="Vila Carlota"></div>
+      <div class="parceiro-card full-bg"><img src="images/parceiros/dos-anjos-fotografia.png" alt="Dos Anjos Fotografia"></div>
     </div>
   </div>
 </section>
