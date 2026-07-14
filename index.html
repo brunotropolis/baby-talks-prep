@@ -637,29 +637,38 @@
     z-index: 2;
   }
   .organizador-card {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
     background: white;
-    border-radius: 16px;
-    padding: 32px 40px;
-    box-shadow: 0 12px 32px rgba(31, 42, 86, 0.08);
+    box-shadow: 0 12px 32px rgba(31, 42, 86, 0.10);
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 280px;
-    min-height: 140px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   .organizador-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 20px 44px rgba(31, 42, 86, 0.14);
+    box-shadow: 0 20px 44px rgba(31, 42, 86, 0.16);
   }
   .organizador-card img {
-    max-width: 220px;
-    max-height: 120px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
   }
+  .organizador-legenda {
+    display: block;
+    margin-top: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--azul-suave);
+  }
+  .organizador-item { display: flex; flex-direction: column; align-items: center; }
 
   /* ============= PARCEIROS / APOIADORES ============= */
   .parceiros {
@@ -679,45 +688,46 @@
     max-width: 1000px;
     margin: 32px auto 0;
   }
-  .parceiro-card {
-    background: white;
-    border-radius: 12px;
-    padding: 24px 28px;
-    aspect-ratio: 3 / 2;
+  .parceiros-grid {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     justify-content: center;
-    box-shadow: 0 8px 24px rgba(31, 42, 86, 0.06);
+    gap: 32px;
+    max-width: 900px;
+    margin: 32px auto 0;
+    position: relative;
+    z-index: 2;
+  }
+  .parceiro-card {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 8px 24px rgba(31, 42, 86, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   .parceiro-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 16px 36px rgba(31, 42, 86, 0.12);
+    box-shadow: 0 16px 36px rgba(31, 42, 86, 0.14);
   }
   .parceiro-card img {
-    max-width: 100%;
-    max-height: 90px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    filter: grayscale(20%);
-    transition: filter 0.3s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
-  .parceiro-card:hover img { filter: grayscale(0%); }
-  /* Cards com logo em fundo colorido (branco em cinza/teal, etc): preservar o fundo do arquivo */
-  .parceiro-card.full-bg { padding: 0; overflow: hidden; background: transparent; }
-  .parceiro-card.full-bg img { max-width: 100%; max-height: 100%; width: 100%; height: 100%; object-fit: cover; filter: none; }
-  .parceiro-card.full-bg:hover img { filter: none; }
   .parceiro-slot {
-    background: white;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
     border: 1px dashed var(--lilas-claro);
-    border-radius: 12px;
-    aspect-ratio: 3 / 2;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--lilas-escuro);
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     font-weight: 600;
@@ -1360,12 +1370,13 @@
     <span class="section-tag">Realização</span>
     <h2 class="section-title-big">Quem está <span class="magenta">organizando</span> o evento</h2>
     <div class="organizadores-grid">
-      <!-- ⚠️ Trocar `src` pro arquivo correto quando estiver disponível em images/organizadores/ -->
-      <div class="organizador-card">
-        <img src="images/organizadores/santo-anjo.png" alt="Santo Anjo" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-family:Fraunces,serif;font-style:italic;color:#8E9BD1;font-size:22px;\'>Santo Anjo</div>'">
+      <div class="organizador-item">
+        <div class="organizador-card"><img src="images/organizadores/santo-anjo.png" alt="Colégio Santo Anjo"></div>
+        <span class="organizador-legenda">Colégio Santo Anjo</span>
       </div>
-      <div class="organizador-card">
-        <img src="images/organizadores/manual-do-recem-nascido.png" alt="Manual do Recém-Nascido" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-family:Fraunces,serif;font-style:italic;color:#8E9BD1;font-size:22px;\'>Manual do Recém-Nascido</div>'">
+      <div class="organizador-item">
+        <div class="organizador-card"><img src="images/organizadores/manual-do-recem-nascido.png" alt="Manual do Recém-Nascido"></div>
+        <span class="organizador-legenda">Manual do Recém-Nascido</span>
       </div>
     </div>
   </div>
@@ -1373,26 +1384,21 @@
 
 <!-- ============= PARCEIROS, APOIADORES E PATROCINADORES ============= -->
 <!-- ⚠️ COMO ADICIONAR NOVO APOIADOR:
-     1. Salve a logo em `images/parceiros/nome-do-apoiador.png` (ou .jpg/.svg)
-     2. Adicione um novo bloco <div class="parceiro-card"><img src="images/parceiros/nome-do-apoiador.png" alt="Nome"></div> aqui dentro do `.parceiros-grid`
-     3. Se quiser tirar os placeholders "Em breve" conforme for enchendo, é só deletar as linhas `<div class="parceiro-slot">Em breve</div>`
-     4. O grid é auto-responsivo (auto-fit minmax 180px) — cresce sozinho conforme adiciona -->
+     1. Gere um PNG 800×800 padronizado (logo centralizado, fundo sólido — branco pra logos escuras, cor da marca pra logos brancas)
+     2. Salve em `images/parceiros/nome.png`
+     3. Adicione uma linha: <div class="parceiro-card"><img src="images/parceiros/nome.png" alt="Nome"></div>
+     4. Delete um <div class="parceiro-slot"></div> se quiser tirar o placeholder -->
 <section class="parceiros">
   <span class="watermark">PARCEIROS</span>
   <div class="container">
     <span class="section-tag">Quem apoia o Baby Talks</span>
     <h2 class="section-title-big">Parceiros, apoiadores<br>e <span class="magenta">patrocinadores</span></h2>
     <div class="parceiros-grid">
-      <!-- Adicionar logos aqui conforme forem confirmando. Exemplo:
-      <div class="parceiro-card"><img src="images/parceiros/nome.png" alt="Nome"></div>
-      Se o logo for claro em fundo colorido (branco em cinza/teal), adicione a classe `full-bg`:
-      <div class="parceiro-card full-bg"><img src="images/parceiros/nome.png" alt="Nome"></div>
-      -->
       <div class="parceiro-card"><img src="images/parceiros/boa-gravidez.png" alt="Boa Gravidez"></div>
-      <div class="parceiro-card full-bg"><img src="images/parceiros/nutrigeston.png" alt="Nutrigeston"></div>
+      <div class="parceiro-card"><img src="images/parceiros/nutrigeston.png" alt="Nutrigeston"></div>
       <div class="parceiro-card"><img src="images/parceiros/muita-festa.png" alt="Muita Festa"></div>
       <div class="parceiro-card"><img src="images/parceiros/vila-carlota.png" alt="Vila Carlota"></div>
-      <div class="parceiro-card full-bg"><img src="images/parceiros/dos-anjos-fotografia.png" alt="Dos Anjos Fotografia"></div>
+      <div class="parceiro-card"><img src="images/parceiros/dos-anjos-fotografia.png" alt="Dos Anjos Fotografia"></div>
     </div>
   </div>
 </section>
