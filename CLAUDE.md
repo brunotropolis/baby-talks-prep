@@ -1,6 +1,8 @@
 # Baby Talks Santo Anjo — Landing Page
 
-Seminário imersivo para casais grávidos. 15 de agosto de 2026, Teatro Santo Anjo · Curitiba.
+Seminário imersivo para casais grávidos. **22 de agosto de 2026** (sábado, 8h30 às 13h30), Teatro Santo Anjo Barigui · Curitiba.
+
+> 💰 **Preços oficiais (Diskingressos event 3351, conferido 02/Jul/2026):** **Individual (Gestante) R$180** (R$198 c/ taxa) · **Duplo/Em Dobro R$260** (R$286 c/ taxa). **Só 2 ingressos — NÃO existe "Acompanhante".** O site `babytalks.com.br` já está correto; notas antigas de "R$150/R$250" e "3 cards" estão DESATUALIZADAS.
 
 > ⚠️ **MIGRAÇÃO 17/Jun/2026 — Light saiu do Lovable.** O `baby-talks-prep` (light, `babytalks.com.br`) agora é **site estático** servido por **GitHub Pages + Cloudflare**, NÃO mais TanStack/Lovable. `index.html` único na raiz é a fonte de verdade (gerado uma vez do antigo `src/routes/index.tsx`; editar direto daqui pra frente). Deploy = push `main`. Detalhes da migração + pendência de NS no `D:\CLAUDE\CLAUDE.md` (seção "Baby Talks"). O **dark** (`nested-nestling`) NÃO foi migrado — segue no Lovable. As seções abaixo sobre stack TanStack/Lovable e deploy via push valem só pro dark agora.
 
@@ -87,7 +89,7 @@ Mapping aliases pra manter compatibilidade com CSS existente sem reescrever tudo
 5. **Aprende (5 palestras)** — grid 2 cols com cards numerados
 6. **Palestrantes** — grid 4 cols (3 confirmados + 1 a anunciar)
 7. **Inclusos** — grid 5 itens, 6-column trick pra centralizar últimos 2 cards
-8. **Ingressos** — 3 cards (Individual R$150, Acompanhante R$250 ⭐, Dupla R$250)
+8. **Ingressos** — 2 cards (Individual R$180, Duplo R$260 ⭐) — sem "Acompanhante"
 9. **Evento-dados** — faixa horizontal: data/horário/local/endereço
 10. **Local** — Google Maps iframe
 11. **FAQ** — accordion
@@ -295,6 +297,127 @@ TXT    _dmarc                      "v=DMARC1; p=none; rua=mailto:rua@dmarc.brevo
 - **Ícones** hospedados em `https://babytalks.com.br/images/icons/{globe,envelope,instagram}.png` (renderizados via Playwright a partir de SVG stroke `#9B3775`, 48×48 supersampled). Usados em `<img>` no HTML.
 - **Cores usadas** (contraste alto testado no Gmail): nome `#0F1636` bold, tagline italic `#4A5578`, data caps `#9B3775`, barra divisória `4px #9B3775`.
 - **Regenerar ícones**: `python` block usando Playwright pra rasterizar SVG do Feather-Icons style, cor stroke `#9B3775`. Guardado no histórico da sessão 01/Jul.
+
+## Seções Organizadores & Parceiros (14/Jul/2026)
+
+Duas seções logo abaixo do endereço/map:
+- **Organizadores** (2 cards círculo 200×200 no desktop, 140×140 mobile lado a lado): Colégio Santo Anjo + Manual do Recém-Nascido
+- **Parceiros/Apoiadores/Patrocinadores** (cards círculo 150×150 desktop, 120×120 mobile, flex wrap): 8 marcas
+
+**Todos os cards são `<a>` linkando o site oficial**, `target="_blank" rel="noopener"`. CSS: `.organizador-card` e `.parceiro-card` são circulares (`border-radius: 50%`, `overflow: hidden`), imagem preenche via `object-fit: cover`.
+
+### URLs oficiais (descobertos via WebSearch em 14/Jul/2026)
+| Marca | URL | Fonte |
+|---|---|---|
+| Colégio Santo Anjo | https://colegiosantoanjo.com.br/ | site oficial |
+| Manual do Recém-Nascido | https://manualdorecemnascido.com.br/ | próprio |
+| Boa Gravidez (Patrícia Moreira) | https://www.boagravidez.net/ | site oficial |
+| Nutrigeston (Patrícia Moreira) | https://www.nutrigeston.com.br/ | loja online |
+| Muita Festa | https://www.instagram.com/muitafesta/ | Instagram (sem site claro) |
+| Vila Carlota Moda Gestante | https://www.vilacarlota.com.br/ | Batel Curitiba |
+| Dos Anjos Fotografia | https://www.dosanjos.fot.br/ | estúdio Curitiba |
+| Vittalice Saúde | https://www.vittalicesaude.com.br/ | fisio pélvica |
+| Diskingressos | https://www.diskingressos.com.br/event/3351 | página do próprio evento Baby Talks |
+| Dr. Rafael Bruns | https://www.rafaelbruns.com.br/ | medicina fetal |
+
+### Processamento das logos — receita reprodutível
+
+**Todas as logos foram RASTERIZADAS (PIL/Pillow) — não há SVG/vetor.** PNGs finais em `images/organizadores/*.png` e `images/parceiros/*.png`, todos **800×800** com fundo sólido (branco pra logos escuras, cor da marca pra logos brancas).
+
+**Sources originais:**
+- Drive `LOGOS/organizadores/` e `LOGOS/parceiros/` (compartilhado com o Bruno)
+- Cópias locais: `C:/Users/bruno/Downloads/` (durante processamento)
+
+**Receita padrão** (funciona pra 90% das logos):
+```python
+from PIL import Image
+import numpy as np
+
+def flatten_to_white(src_path):
+    """Abre PNG/webp/jpg com possível alpha e flatten sobre branco (evita fundo preto)."""
+    img = Image.open(src_path)
+    if img.mode in ('RGBA', 'LA', 'P'):
+        img = img.convert('RGBA')
+        bg = Image.new('RGBA', img.size, (255,255,255,255))
+        img = Image.alpha_composite(bg, img).convert('RGB')
+    else:
+        img = img.convert('RGB')
+    return img
+
+def bbox_light(img, thresh=235):
+    arr = np.array(img)
+    m = (arr[:,:,0]<thresh)|(arr[:,:,1]<thresh)|(arr[:,:,2]<thresh)
+    ys, xs = np.where(m)
+    if len(xs)==0: return (0,0,img.width,img.height)
+    # percentis descartam outliers (ruído de compressão)
+    x0=int(np.percentile(xs,0.5)); x1=int(np.percentile(xs,99.5))
+    y0=int(np.percentile(ys,0.5)); y1=int(np.percentile(ys,99.5))
+    return (x0,y0,x1,y1)
+
+def circle_ready(img, dst, bg=(255,255,255), fit=0.80, clean_bg=True):
+    """Gera PNG 800×800 com logo centralizado. fit_ratio:
+       - 0.80–0.88 pra logos quadradas/símbolos
+       - 0.70–0.75 pra logos horizontais (respiro no círculo)"""
+    bbox = bbox_light(img)
+    crop = img.crop((max(0,bbox[0]-15), max(0,bbox[1]-15),
+                     min(img.width,bbox[2]+15), min(img.height,bbox[3]+15)))
+    size = 800
+    canvas = Image.new('RGB', (size,size), bg)
+    scale = int(size*fit) / max(crop.width, crop.height)
+    nw, nh = int(crop.width*scale), int(crop.height*scale)
+    resized = crop.resize((nw,nh), Image.LANCZOS)
+    if clean_bg:
+        rarr = np.array(resized)
+        m = (rarr[:,:,0]>235)&(rarr[:,:,1]>235)&(rarr[:,:,2]>235)
+        rarr[m] = bg
+        resized = Image.fromarray(rarr)
+    canvas.paste(resized, ((size-nw)//2, (size-nh)//2))
+    canvas.save(dst, optimize=True)
+```
+
+**Casos especiais aprendidos:**
+1. **PDF → PNG** (Nutrigeston, Manual RN): usar `fitz.open(path).get_pixmap(dpi=400)`. Alguns PDFs vêm com fundo PRETO ao renderizar — detectar `mask_black = (r<30)&(g<30)&(b<30)`, trocar por branco, ANTES do bbox. Erro típico `MuPDF error: No common ancestor in structure tree` é warning inofensivo (renderiza normal).
+2. **Logo branca em fundo colorido** (Nutrigeston, Vittalice, Dos Anjos Fotografia): usar bbox invertido (`arr > 200` = pixel claro) e fundo sólido preservado; se contraste ruim (Vittalice tinha texto navy sobre preto = invisível), trocar preto → branco antes de tudo.
+3. **WebP com transparência** (Diskingressos, Boa Gravidez): SEMPRE `flatten_to_white` primeiro — senão `convert('RGB')` transforma alpha em PRETO.
+4. **Bbox pega página inteira do PDF** (Manual RN): usar máscara por SATURAÇÃO (`mx-mn > 15`) pra pegar só o círculo colorido, ou detectar cor específica (rosa claro `r>230 & g,b entre 195-235`).
+5. **Círculo dentro de círculo fica esquisito** (Manual RN): detectar o círculo com bbox por cor + forçar quadrado centralizado + fit=0.95 pra ocupar o card inteiro.
+
+### CSS do círculo padronizado
+```css
+.parceiro-card {
+  width: 150px; height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 8px 24px rgba(31, 42, 86, 0.08);
+  display: block; text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.parceiro-card img { width: 100%; height: 100%; object-fit: cover; }
+/* mobile */
+@media (max-width: 900px) {
+  .parceiro-card { width: 120px; height: 120px; }
+  .organizadores-grid { flex-wrap: nowrap; gap: 20px; }
+  .organizador-card { width: 140px; height: 140px; }
+}
+```
+
+### HTML padrão pra adicionar novo parceiro
+```html
+<a href="URL-DA-MARCA" target="_blank" rel="noopener" class="parceiro-card">
+  <img src="images/parceiros/nome.png" alt="Nome">
+</a>
+```
+
+### Iterações desta sessão (14/Jul)
+1. Layout inicial retangular → migrei pra **círculos** por feedback ("ficou feio pra caramba")
+2. Testei formato `.pill` pra logos horizontais → Bruno preferiu **tudo círculo** com logo menor dentro (fit ~0.72)
+3. Manual RN teve 3 iterações (círculo dentro de círculo → percentis pegando PDF inteiro → detecção por rosa claro específico com fit=0.95)
+4. Boa Gravidez tinha alpha channel virando preto no `convert('RGB')` → fix com `alpha_composite` sobre branco
+5. Vittalice texto navy invisível sobre fundo preto original → invertido pra fundo branco
+6. Removi legendas dos organizadores (Bruno pediu)
+7. Mobile: organizadores lado a lado (`flex-wrap: nowrap` + cards 140×140)
+8. Todas as logos viraram `<a>` linkando site oficial (WebSearch 14/Jul)
 
 ## Pendências / próximos passos
 
