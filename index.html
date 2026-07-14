@@ -680,32 +680,31 @@
   }
   .parceiros .watermark { right: -40px; top: 40px; }
   .parceiros-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
-    position: relative;
-    z-index: 2;
-    max-width: 1000px;
-    margin: 32px auto 0;
-  }
-  .parceiros-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 32px;
-    max-width: 900px;
+    align-items: center;
+    gap: 28px;
+    max-width: 980px;
     margin: 32px auto 0;
     position: relative;
     z-index: 2;
   }
   .parceiro-card {
-    width: 140px;
-    height: 140px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     overflow: hidden;
     background: white;
     box-shadow: 0 8px 24px rgba(31, 42, 86, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex-shrink: 0;
+  }
+  /* Variação pill pra logos horizontais (não corta o desenho) */
+  .parceiro-card.pill {
+    width: 240px;
+    height: 120px;
+    border-radius: 60px;
   }
   .parceiro-card:hover {
     transform: translateY(-3px);
@@ -716,22 +715,6 @@
     height: 100%;
     object-fit: cover;
     display: block;
-  }
-  .parceiro-slot {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.5);
-    border: 1px dashed var(--lilas-claro);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--lilas-escuro);
-    font-size: 10px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    font-weight: 600;
-    opacity: 0.55;
   }
 
   /* ============= INGRESSOS ============= */
@@ -979,7 +962,11 @@
     .incluso, .incluso:nth-child(4), .incluso:nth-child(5) { grid-column: span 1; }
     .experiencia-extra-itens { grid-template-columns: 1fr; }
     .exp-extra { font-size: 15px; }
-    .parceiros-grid { grid-template-columns: repeat(2, 1fr); }
+    .parceiros-grid { gap: 20px; }
+    .parceiro-card { width: 120px; height: 120px; }
+    .parceiro-card.pill { width: 200px; height: 100px; border-radius: 50px; }
+    .organizadores-grid { gap: 32px; }
+    .organizador-card { width: 160px; height: 160px; }
     .ingressos-grid { grid-template-columns: 1fr; }
     .inclui-grid { grid-template-columns: 1fr; }
     .evento-dados { grid-template-columns: repeat(2, 1fr); border-radius: 10px; }
@@ -1384,10 +1371,14 @@
 
 <!-- ============= PARCEIROS, APOIADORES E PATROCINADORES ============= -->
 <!-- ⚠️ COMO ADICIONAR NOVO APOIADOR:
-     1. Gere um PNG 800×800 padronizado (logo centralizado, fundo sólido — branco pra logos escuras, cor da marca pra logos brancas)
-     2. Salve em `images/parceiros/nome.png`
-     3. Adicione uma linha: <div class="parceiro-card"><img src="images/parceiros/nome.png" alt="Nome"></div>
-     4. Delete um <div class="parceiro-slot"></div> se quiser tirar o placeholder -->
+     1. Gere o PNG conforme o formato do logo:
+        - Logo QUADRADA/símbolo → PNG 800×800 (círculo)
+        - Logo HORIZONTAL/linha (só texto) → PNG 1200×600 (pill)
+     2. Fundo sólido — branco pra logos escuras, cor da marca pra logos brancas
+     3. Salve em `images/parceiros/nome.png`
+     4. Adicione a linha correta:
+        - Quadrada: <div class="parceiro-card"><img src="..." alt="Nome"></div>
+        - Horizontal: <div class="parceiro-card pill"><img src="..." alt="Nome"></div> -->
 <section class="parceiros">
   <span class="watermark">PARCEIROS</span>
   <div class="container">
@@ -1395,10 +1386,12 @@
     <h2 class="section-title-big">Parceiros, apoiadores<br>e <span class="magenta">patrocinadores</span></h2>
     <div class="parceiros-grid">
       <div class="parceiro-card"><img src="images/parceiros/boa-gravidez.png" alt="Boa Gravidez"></div>
-      <div class="parceiro-card"><img src="images/parceiros/nutrigeston.png" alt="Nutrigeston"></div>
+      <div class="parceiro-card pill"><img src="images/parceiros/nutrigeston.png" alt="Nutrigeston"></div>
       <div class="parceiro-card"><img src="images/parceiros/muita-festa.png" alt="Muita Festa"></div>
-      <div class="parceiro-card"><img src="images/parceiros/vila-carlota.png" alt="Vila Carlota"></div>
+      <div class="parceiro-card pill"><img src="images/parceiros/vila-carlota.png" alt="Vila Carlota"></div>
       <div class="parceiro-card"><img src="images/parceiros/dos-anjos-fotografia.png" alt="Dos Anjos Fotografia"></div>
+      <div class="parceiro-card"><img src="images/parceiros/vittalice.png" alt="Vittalice"></div>
+      <div class="parceiro-card pill"><img src="images/parceiros/diskingressos.png" alt="Diskingressos"></div>
     </div>
   </div>
 </section>
