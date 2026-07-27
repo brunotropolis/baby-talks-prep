@@ -40,6 +40,18 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=1490515762832538&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+
+<script>
+// InitiateCheckout: qualquer clique em link/botão pro Diskingressos (exceto card do parceiro)
+document.addEventListener('click', function(e) {
+  const a = e.target.closest('a[href*="diskingressos.com.br"]');
+  if (!a) return;
+  if (a.classList.contains('parceiro-card')) return; // logo do parceiro no rodapé, não é intenção de compra
+  if (typeof fbq === 'function') {
+    fbq('track', 'InitiateCheckout', { content_name: 'Baby Talks Santo Anjo', content_category: 'evento' });
+  }
+});
+</script>
 </head>
 <body>
 <style>
