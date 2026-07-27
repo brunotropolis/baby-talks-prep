@@ -281,35 +281,47 @@ document.addEventListener('DOMContentLoaded', function() {
 
   .hero-cta { margin-top: 8px; }
 
-  /* Facade do Google Maps — carrega o iframe só no click (economia ~2MB/1s) */
+  /* Facade do Google Maps — imagem do mapa; on-click carrega o iframe real */
   .map-facade {
     width: 100%;
     height: 100%;
     min-height: 320px;
-    background: linear-gradient(135deg, var(--lavanda) 0%, var(--lilas-claro) 100%);
+    background: url('/images/mapa-teatro.webp') center/cover no-repeat, var(--lavanda);
     border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
-    text-align: center;
-    padding: 32px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .map-facade:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(31,42,86,0.14); }
-  .map-facade::before {
+  .map-facade:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(31,42,86,0.16); }
+  .map-facade::after {
     content: '';
     position: absolute; inset: 0;
-    background: radial-gradient(circle at 50% 40%, rgba(255,255,255,0.5) 0%, transparent 60%);
+    background: linear-gradient(180deg, transparent 60%, rgba(31,42,86,0.14) 100%);
     pointer-events: none;
+    transition: background 0.2s ease;
   }
-  .map-facade-inner { position: relative; z-index: 1; }
-  .map-pin { font-size: 42px; margin-bottom: 12px; }
-  .map-title { font-family: 'Fraunces', serif; font-weight: 600; font-size: 22px; color: var(--azul); margin-bottom: 6px; }
-  .map-addr { font-size: 14px; color: var(--azul-suave); margin-bottom: 20px; }
-  .map-cta { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--magenta); padding: 8px 18px; background: white; border-radius: 100px; box-shadow: 0 4px 12px rgba(31,42,86,0.08); }
+  .map-facade:hover::after {
+    background: linear-gradient(180deg, transparent 40%, rgba(31,42,86,0.28) 100%);
+  }
+  .map-cta {
+    position: relative; z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--azul);
+    padding: 10px 22px;
+    background: white;
+    border-radius: 100px;
+    box-shadow: 0 8px 20px rgba(31,42,86,0.20);
+  }
+  .map-cta::after { content: '→'; font-size: 15px; color: var(--magenta); }
 
   /* CTA reutilizável no fim das seções */
   .section-cta-wrap {
@@ -1472,12 +1484,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="local-img">
         <div class="map-facade" id="map-facade" role="button" tabindex="0" aria-label="Carregar mapa interativo do Teatro Santo Anjo">
-          <div class="map-facade-inner">
-            <div class="map-pin">📍</div>
-            <div class="map-title">Teatro Santo Anjo — Barigui</div>
-            <div class="map-addr">BR-277, 1115 · Curitiba/PR</div>
-            <div class="map-cta">Clique para ver o mapa</div>
-          </div>
+          <span class="map-cta">Ver no mapa</span>
         </div>
       </div>
     </div>
