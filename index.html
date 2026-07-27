@@ -266,17 +266,20 @@ document.addEventListener('click', function(e) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
     margin-top: 48px;
     text-align: center;
   }
   .section-cta-sub {
     font-family: 'Fraunces', serif;
     font-style: italic;
-    font-size: 15px;
-    color: var(--azul-suave);
-    letter-spacing: 0.005em;
+    font-size: 18px;
+    color: var(--azul);
+    line-height: 1.35;
+    letter-spacing: -0.005em;
+    max-width: 520px;
   }
+  .aprende .section-cta-sub { color: white; }
   /* mini CTA — pill discreta pra topo de seção */
   .mini-cta {
     display: inline-flex;
@@ -1116,7 +1119,6 @@ document.addEventListener('click', function(e) {
   <span class="watermark">EXPERIÊNCIA</span>
   <div class="container">
     <div class="sobre-inner">
-      <div style="text-align:center"><a href="#ingressos" class="mini-cta">Garantir ingresso</a></div>
       <span class="section-tag">O que é o Baby Talks</span>
       <h2>Um evento para viver a chegada do seu bebê de uma <span class="magenta">forma diferente.</span></h2>
       <p>Mais do que palestras. Mais do que informação. O Baby Talks é uma experiência criada para reunir famílias, profissionais e histórias em uma manhã especial de aprendizado, conexão e preparação.</p>
@@ -1124,6 +1126,7 @@ document.addEventListener('click', function(e) {
       <p>Porque a chegada de um bebê merece ser vivida com amor, informação e preparo.</p>
 
       <div class="section-cta-wrap">
+        <span class="section-cta-sub">uma manhã pensada com carinho pra você viver com quem também espera</span>
         <a href="#ingressos" class="btn-magenta">Quero garantir meu ingresso</a>
       </div>
     </div>
@@ -1134,7 +1137,6 @@ document.addEventListener('click', function(e) {
 <section class="aprende" id="programa">
   <span class="watermark">PROGRAMA</span>
   <div class="container">
-    <div style="text-align:center"><a href="#ingressos" class="mini-cta">Garantir ingresso</a></div>
     <span class="section-tag">A jornada</span>
     <h2 class="section-title-big">Uma jornada completa<br><span class="magenta">da gestação ao <span style="white-space:nowrap">pós-parto</span></span></h2>
     <p class="section-sub">Quatro encontros na ordem em que a vida acontece: da gravidez ao bebê em casa.</p>
@@ -1182,6 +1184,7 @@ document.addEventListener('click', function(e) {
     </div>
 
     <div class="section-cta-wrap">
+      <span class="section-cta-sub">a jornada completa, com quem vive isso todos os dias</span>
       <a href="#ingressos" class="btn-magenta">Quero garantir meu ingresso</a>
     </div>
   </div>
@@ -1263,8 +1266,8 @@ document.addEventListener('click', function(e) {
     </div>
 
     <div class="section-cta-wrap">
-      <a href="#ingressos" class="btn-magenta">Quero garantir meu ingresso</a>
       <span class="section-cta-sub">a chance de estar com elas ao vivo, em uma manhã só</span>
+      <a href="#ingressos" class="btn-magenta">Quero garantir meu ingresso</a>
     </div>
   </div>
 </section>
