@@ -26,7 +26,8 @@
 <link rel="preconnect" href="https://connect.facebook.net" crossorigin />
 <link rel="preconnect" href="https://www.clarity.ms" crossorigin />
 <link rel="dns-prefetch" href="https://www.google.com" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=DM+Sans:wght@400;500;600;700&display=swap" />
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=DM+Sans:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=DM+Sans:wght@400;500;600;700&display=swap" /></noscript>
 
 <!-- Meta Pixel Code -->
 <script>
@@ -126,6 +127,12 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; position: relative; }
+
+  /* Otimização: seções abaixo do fold só pintam quando entram na viewport (previne CLS + acelera paint) */
+  .sobre, .aprende, .palestrantes, .inclusos, .ingressos, .local, .organizadores, .parceiros, .cta-final {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 900px;
+  }
 
   .watermark {
     position: absolute;
