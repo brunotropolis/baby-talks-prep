@@ -19,6 +19,8 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="preload" as="image" href="/images/hero-casal-v2.jpg" fetchpriority="high" />
+<link rel="preload" as="image" href="/images/logo-baby-talks.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=DM+Sans:wght@400;500;600;700&display=swap" />
@@ -1010,7 +1012,7 @@ document.addEventListener('click', function(e) {
 <nav>
   <div class="nav-inner">
     <a href="#" class="nav-logo" aria-label="Baby Talks">
-      <img src="/images/logo-baby-talks.png" alt="Baby Talks" />
+      <img decoding="async" src="/images/logo-baby-talks.png" alt="Baby Talks" />
     </a>
     <div class="nav-info">
       <div class="data"><span class="dot"></span> 22 · agosto · sábado</div>
@@ -1032,12 +1034,12 @@ document.addEventListener('click', function(e) {
           <div class="hero-meta-item"><span class="hero-meta-icon">⏱️</span>8h30 às 13h30</div>
         </div>
         <div class="hero-mobile-img">
-          <img src="/images/hero-casal-v2.jpg" alt="Casal grávido" />
+          <img decoding="async" fetchpriority="high" src="/images/hero-casal-v2.jpg" alt="Casal grávido" />
         </div>
       </div>
       <div class="hero-img-wrap">
         <div class="hero-img-shape">
-          <img src="/images/hero-casal-v2.jpg" alt="Casal grávido" />
+          <img decoding="async" src="/images/hero-casal-v2.jpg" alt="Casal grávido" />
         </div>
       </div>
     </div>
@@ -1064,7 +1066,7 @@ document.addEventListener('click', function(e) {
       </div>
       <div class="gravidez-direita">
         <div class="gravidez-img">
-          <img src="/images/local-portrait-v2.jpg" alt="Mãe gestante" />
+          <img loading="lazy" decoding="async" src="/images/local-portrait-v2.jpg" alt="Mãe gestante" />
         </div>
       </div>
     </div>
@@ -1150,7 +1152,7 @@ document.addEventListener('click', function(e) {
       <div class="palestrante">
         <div class="palestrante-foto">
           <div class="palestrante-iniciais">DA</div>
-          <img src="/images/dayane-v2.jpg" alt="Dayane Dos Anjos" style="object-position:center 30%" />
+          <img loading="lazy" decoding="async" src="/images/dayane-v2.jpg" alt="Dayane Dos Anjos" style="object-position:center 30%" />
         </div>
         <div class="palestrante-corpo">
           <div class="palestrante-nome">Dayane Dos Anjos</div>
@@ -1166,7 +1168,7 @@ document.addEventListener('click', function(e) {
       <div class="palestrante">
         <div class="palestrante-foto">
           <div class="palestrante-iniciais">PM</div>
-          <img src="/images/palestrante-patricia.jpg" alt="Patricia Moreira" onerror="this.style.display='none'" />
+          <img loading="lazy" decoding="async" src="/images/palestrante-patricia.jpg" alt="Patricia Moreira" onerror="this.style.display='none'" />
         </div>
         <div class="palestrante-corpo">
           <div class="palestrante-nome">Patricia Moreira</div>
@@ -1182,7 +1184,7 @@ document.addEventListener('click', function(e) {
       <div class="palestrante">
         <div class="palestrante-foto">
           <div class="palestrante-iniciais">AV</div>
-          <img src="/images/palestrante-alline.jpg" alt="Alline Vieira" onerror="this.style.display='none'" />
+          <img loading="lazy" decoding="async" src="/images/palestrante-alline.jpg" alt="Alline Vieira" onerror="this.style.display='none'" />
         </div>
         <div class="palestrante-corpo">
           <div class="palestrante-nome">Alline Vieira</div>
@@ -1198,7 +1200,7 @@ document.addEventListener('click', function(e) {
       <div class="palestrante">
         <div class="palestrante-foto">
           <div class="palestrante-iniciais">JC</div>
-          <img src="/images/palestrante-juliana.jpg" alt="Juliana Chalupe" onerror="this.style.display='none'" />
+          <img loading="lazy" decoding="async" src="/images/palestrante-juliana.jpg" alt="Juliana Chalupe" onerror="this.style.display='none'" />
         </div>
         <div class="palestrante-corpo">
           <div class="palestrante-nome">Dra. Juliana Chalupe</div>
@@ -1382,8 +1384,8 @@ document.addEventListener('click', function(e) {
     <span class="section-tag">Realização</span>
     <h2 class="section-title-big">Quem está <span class="magenta">organizando</span> o evento</h2>
     <div class="organizadores-grid">
-      <a href="https://colegiosantoanjo.com.br/" target="_blank" rel="noopener" class="organizador-card"><img src="images/organizadores/santo-anjo.png" alt="Colégio Santo Anjo"></a>
-      <a href="https://manualdorecemnascido.com.br/" target="_blank" rel="noopener" class="organizador-card"><img src="images/organizadores/manual-do-recem-nascido.png" alt="Manual do Recém-Nascido"></a>
+      <a href="https://colegiosantoanjo.com.br/" target="_blank" rel="noopener" class="organizador-card"><img loading="lazy" decoding="async" src="images/organizadores/santo-anjo.png" alt="Colégio Santo Anjo"></a>
+      <a href="https://manualdorecemnascido.com.br/" target="_blank" rel="noopener" class="organizador-card"><img loading="lazy" decoding="async" src="images/organizadores/manual-do-recem-nascido.png" alt="Manual do Recém-Nascido"></a>
     </div>
   </div>
 </section>
@@ -1395,22 +1397,22 @@ document.addEventListener('click', function(e) {
         - Fit ~0.70 pra logos horizontais (respiro pra caber redonda)
         - Fundo BRANCO pra logos escuras; cor da marca pra logos com texto branco
      2. Salve em `images/parceiros/nome.png`
-     3. Adicione: <a href="URL-DA-MARCA" target="_blank" rel="noopener" class="parceiro-card"><img src="images/parceiros/nome.png" alt="Nome"></a> -->
+     3. Adicione: <a href="URL-DA-MARCA" target="_blank" rel="noopener" class="parceiro-card"><img loading="lazy" decoding="async" src="images/parceiros/nome.png" alt="Nome"></a> -->
 <section class="parceiros">
   <span class="watermark">PARCEIROS</span>
   <div class="container">
     <span class="section-tag">Quem apoia o Baby Talks</span>
     <h2 class="section-title-big">Parceiros, apoiadores<br>e <span class="magenta">patrocinadores</span></h2>
     <div class="parceiros-grid">
-      <a href="https://www.boagravidez.net/" target="_blank" rel="noopener" class="parceiro-card"><img src="images/parceiros/boa-gravidez.png" alt="Boa Gravidez"></a>
-      <a href="https://www.nutrigeston.com.br/" target="_blank" rel="noopener" class="parceiro-card"><img src="images/parceiros/nutrigeston.png" alt="Nutrigeston"></a>
-      <a href="https://www.instagram.com/muitafesta/" target="_blank" rel="noopener" class="parceiro-card"><img src="images/parceiros/muita-festa.png" alt="Muita Festa"></a>
-      <a href="https://www.vilacarlota.com.br/" target="_blank" rel="noopener" class="parceiro-card"><img src="images/parceiros/vila-carlota.png" alt="Vila Carlota"></a>
-      <a href="https://www.dosanjos.fot.br/" target="_blank" rel="noopener" class="parceiro-card"><img src="images/parceiros/dos-anjos-fotografia.png" alt="Dos Anjos Fotografia"></a>
-      <a href="https://www.vittalicesaude.com.br/" target="_blank" rel="noopener" class="parceiro-card"><img src="images/parceiros/vittalice.png" alt="Vittalice"></a>
-      <a href="https://www.diskingressos.com.br/event/3351" target="_blank" rel="noopener" class="parceiro-card"><img src="images/parceiros/diskingressos.png" alt="Diskingressos"></a>
-      <a href="https://www.rafaelbruns.com.br/" target="_blank" rel="noopener" class="parceiro-card"><img src="images/parceiros/dr-rafael-bruns.png" alt="Dr. Rafael Bruns"></a>
-      <a href="https://vacinemais.com.br/" target="_blank" rel="noopener" class="parceiro-card"><img src="images/parceiros/vacine-mais.png" alt="Vacine Mais"></a>
+      <a href="https://www.boagravidez.net/" target="_blank" rel="noopener" class="parceiro-card"><img loading="lazy" decoding="async" src="images/parceiros/boa-gravidez.png" alt="Boa Gravidez"></a>
+      <a href="https://www.nutrigeston.com.br/" target="_blank" rel="noopener" class="parceiro-card"><img loading="lazy" decoding="async" src="images/parceiros/nutrigeston.png" alt="Nutrigeston"></a>
+      <a href="https://www.instagram.com/muitafesta/" target="_blank" rel="noopener" class="parceiro-card"><img loading="lazy" decoding="async" src="images/parceiros/muita-festa.png" alt="Muita Festa"></a>
+      <a href="https://www.vilacarlota.com.br/" target="_blank" rel="noopener" class="parceiro-card"><img loading="lazy" decoding="async" src="images/parceiros/vila-carlota.png" alt="Vila Carlota"></a>
+      <a href="https://www.dosanjos.fot.br/" target="_blank" rel="noopener" class="parceiro-card"><img loading="lazy" decoding="async" src="images/parceiros/dos-anjos-fotografia.png" alt="Dos Anjos Fotografia"></a>
+      <a href="https://www.vittalicesaude.com.br/" target="_blank" rel="noopener" class="parceiro-card"><img loading="lazy" decoding="async" src="images/parceiros/vittalice.png" alt="Vittalice"></a>
+      <a href="https://www.diskingressos.com.br/event/3351" target="_blank" rel="noopener" class="parceiro-card"><img loading="lazy" decoding="async" src="images/parceiros/diskingressos.png" alt="Diskingressos"></a>
+      <a href="https://www.rafaelbruns.com.br/" target="_blank" rel="noopener" class="parceiro-card"><img loading="lazy" decoding="async" src="images/parceiros/dr-rafael-bruns.png" alt="Dr. Rafael Bruns"></a>
+      <a href="https://vacinemais.com.br/" target="_blank" rel="noopener" class="parceiro-card"><img loading="lazy" decoding="async" src="images/parceiros/vacine-mais.png" alt="Vacine Mais"></a>
     </div>
   </div>
 </section>
@@ -1428,7 +1430,7 @@ document.addEventListener('click', function(e) {
 <footer>
   <div class="container">
     <a href="#" class="nav-logo footer-logo" aria-label="Baby Talks">
-      <img src="/images/logo-baby-talks.png" alt="Baby Talks" />
+      <img decoding="async" src="/images/logo-baby-talks.png" alt="Baby Talks" />
     </a>
     <p>O encontro que toda gestante gostaria de viver antes da chegada do bebê · Curitiba/PR</p>
     <p>Dúvidas? Fale com a gente: <a href="mailto:contato@babytalks.com.br">contato@babytalks.com.br</a></p>
