@@ -256,7 +256,10 @@ document.addEventListener('DOMContentLoaded', function() {
     border-radius: 18px;
     overflow: hidden;
     aspect-ratio: 4 / 5;
+    width: 100%;
     box-shadow: 0 10px 30px rgba(31, 42, 86, 0.12);
+    contain: layout;
+    contain-intrinsic-size: 100vw 125vw;
   }
   .hero-mobile-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
   .hero-meta { display: flex; flex-wrap: nowrap; gap: 8px; margin: 0 0 24px; }
