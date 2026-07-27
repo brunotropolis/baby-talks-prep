@@ -277,16 +277,29 @@ document.addEventListener('click', function(e) {
     color: var(--azul-suave);
     letter-spacing: 0.005em;
   }
-  .aprende-cta .btn-magenta {
-    background: white;
+  /* mini CTA — pill discreta pra topo de seção */
+  .mini-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
     color: var(--verde);
-    border-color: white;
+    padding: 8px 18px;
+    border: 1.5px solid var(--verde);
+    border-radius: 100px;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    transition: background 0.18s, color 0.18s;
   }
-  .aprende-cta .btn-magenta:hover {
-    background: var(--verde);
-    color: white;
-    border-color: var(--verde);
-  }
+  .mini-cta:hover { background: var(--verde); color: white; }
+  .mini-cta::after { content: '→'; font-size: 15px; }
+  .aprende .mini-cta { color: white; border-color: rgba(255,255,255,0.55); }
+  .aprende .mini-cta:hover { background: white; color: var(--verde); border-color: white; }
 
   /* ============= TÍTULOS DE SEÇÃO ============= */
   .section-title-big {
@@ -1103,6 +1116,7 @@ document.addEventListener('click', function(e) {
   <span class="watermark">EXPERIÊNCIA</span>
   <div class="container">
     <div class="sobre-inner">
+      <div style="text-align:center"><a href="#ingressos" class="mini-cta">Garantir ingresso</a></div>
       <span class="section-tag">O que é o Baby Talks</span>
       <h2>Um evento para viver a chegada do seu bebê de uma <span class="magenta">forma diferente.</span></h2>
       <p>Mais do que palestras. Mais do que informação. O Baby Talks é uma experiência criada para reunir famílias, profissionais e histórias em uma manhã especial de aprendizado, conexão e preparação.</p>
@@ -1120,6 +1134,7 @@ document.addEventListener('click', function(e) {
 <section class="aprende" id="programa">
   <span class="watermark">PROGRAMA</span>
   <div class="container">
+    <div style="text-align:center"><a href="#ingressos" class="mini-cta">Garantir ingresso</a></div>
     <span class="section-tag">A jornada</span>
     <h2 class="section-title-big">Uma jornada completa<br><span class="magenta">da gestação ao <span style="white-space:nowrap">pós-parto</span></span></h2>
     <p class="section-sub">Quatro encontros na ordem em que a vida acontece: da gravidez ao bebê em casa.</p>
@@ -1166,7 +1181,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
 
-    <div class="section-cta-wrap aprende-cta">
+    <div class="section-cta-wrap">
       <a href="#ingressos" class="btn-magenta">Quero garantir meu ingresso</a>
     </div>
   </div>
@@ -1306,7 +1321,7 @@ document.addEventListener('click', function(e) {
   <div class="container" style="text-align:center;">
     <span class="ingresso-lote-badge">🔥 1º Lote · Promocional</span>
     <h2 class="section-title-big">Garanta sua <span class="magenta">participação.</span></h2>
-    <p class="section-sub">O 1º lote é o preço mais baixo da temporada. Quando esgotar, sobe pro próximo lote.</p>
+    <p class="section-sub">Valor especial para o primeiro lote, ingressos limitados.</p>
 
     <div class="ingressos-grid">
       <div class="ingresso">
@@ -1459,7 +1474,7 @@ document.addEventListener('click', function(e) {
 <section class="cta-final">
   <div class="container cta-final-content">
     <h2>Viva a chegada do seu bebê<br><span class="accent">com presença e preparo.</span></h2>
-    <p>Vagas limitadas. O 1º lote é o preço mais baixo da temporada.</p>
+    <p>Valor especial para o primeiro lote, ingressos limitados.</p>
     <a href="https://www.diskingressos.com.br/event/3351" target="_blank" rel="noopener" class="btn-magenta">Quero viver o Baby Talks</a>
   </div>
 </section>
