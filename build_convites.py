@@ -79,8 +79,9 @@ EXTRA_CSS = """
     text-transform: uppercase; vertical-align: middle;
   }
   .ingresso-validade {
-    font-family: 'DM Sans', sans-serif; font-size: 12px;
-    color: var(--magenta); font-weight: 600; margin-bottom: 12px;
+    font-family: 'DM Sans', sans-serif; font-size: 13px;
+    color: var(--magenta); font-weight: 800;
+    margin-top: -18px; margin-bottom: 24px;
     letter-spacing: 0.02em;
   }
   .ingresso-validade::before { content: "⏳ "; }
