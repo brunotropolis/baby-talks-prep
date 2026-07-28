@@ -78,6 +78,12 @@ EXTRA_CSS = """
     padding: 3px 10px; border-radius: 100px; margin-left: 6px;
     text-transform: uppercase; vertical-align: middle;
   }
+  .ingresso-validade {
+    font-family: 'DM Sans', sans-serif; font-size: 12px;
+    color: var(--magenta); font-weight: 600; margin-bottom: 12px;
+    letter-spacing: 0.02em;
+  }
+  .ingresso-validade::before { content: "⏳ "; }
   @media (max-width: 900px) {
     .convite-banner { margin: 0 16px 24px; padding: 18px 20px; }
     .convite-banner h3 { font-size: 18px; }
@@ -165,11 +171,11 @@ def build(slug, cupom, nome, quem):
     # Só substituir os que estão nos botões (não o card de parceiro do rodapé)
     src = src.replace(
         '<a href="https://www.diskingressos.com.br/event/3351" target="_blank" rel="noopener" class="ingresso-btn">Comprar individual</a>',
-        f'<a href="{checkout_url}" target="_blank" rel="noopener" class="ingresso-btn">Comprar individual</a>'
+        f'<div class="ingresso-validade">Cupom válido até 07/08</div>\n        <a href="{checkout_url}" target="_blank" rel="noopener" class="ingresso-btn">Comprar individual</a>'
     )
     src = src.replace(
         '<a href="https://www.diskingressos.com.br/event/3351" target="_blank" rel="noopener" class="ingresso-btn">Comprar duplo</a>',
-        f'<a href="{checkout_url}" target="_blank" rel="noopener" class="ingresso-btn">Comprar duplo</a>'
+        f'<div class="ingresso-validade">Cupom válido até 07/08</div>\n        <a href="{checkout_url}" target="_blank" rel="noopener" class="ingresso-btn">Comprar duplo</a>'
     )
     src = src.replace(
         '<a href="https://www.diskingressos.com.br/event/3351" target="_blank" rel="noopener" class="btn-magenta">Quero viver o Baby Talks</a>',

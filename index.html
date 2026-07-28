@@ -205,13 +205,18 @@ document.addEventListener('DOMContentLoaded', function() {
     animation: pulse-dot 2.4s ease-in-out infinite;
   }
   .nav-info .chamada {
-    font-family: 'Fraunces', 'Fraunces Fallback', serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 15px;
-    color: var(--azul-suave);
-    margin-top: 4px;
-    letter-spacing: 0.005em;
+    display: inline-block;
+    margin-top: 6px;
+    padding: 4px 12px;
+    background: rgba(201, 95, 163, 0.10);
+    border: 1px solid rgba(201, 95, 163, 0.30);
+    border-radius: 100px;
+    font-family: 'DM Sans', 'DM Sans Fallback', sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--magenta);
   }
   @keyframes pulse-dot {
     0%, 100% { opacity: 1; transform: scale(1); }
@@ -1146,7 +1151,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </a>
     <div class="nav-info">
       <div class="data"><span class="dot"></span> 22 · agosto · sábado</div>
-      <div class="chamada">Da gestação ao puerpério em uma única manhã</div>
+      <div class="chamada">🔥 Ingressos limitados</div>
     </div>
   </div>
 </nav>
@@ -1417,7 +1422,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="ingressos-grid">
       <div class="ingresso">
         <div class="ingresso-tipo">Ingresso Individual</div>
-        <div class="ingresso-desc">Pra quem vai viver o Baby Talks sozinha.</div>
+        <div class="ingresso-desc">Vivenciar o Baby Talks.</div>
         <div class="ingresso-preco-wrap">
           <span class="ingresso-cifrao">R$</span>
           <span class="ingresso-valor">180</span>
@@ -1428,7 +1433,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       <div class="ingresso popular">
         <div class="ingresso-tipo">Ingresso Duplo</div>
-        <div class="ingresso-desc">Válido para casal ou duas gestantes. Vai junto, aprende junto.</div>
+        <div class="ingresso-desc">Vivenciar o Baby Talks em casal ou acompanhado.</div>
         <div class="ingresso-preco-wrap">
           <span class="ingresso-cifrao">R$</span>
           <span class="ingresso-valor">260</span>
@@ -1459,7 +1464,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="evento-dados-item">
         <div class="evento-dados-icon">⏱️</div>
         <div class="evento-dados-label">Horário</div>
-        <div class="evento-dados-valor">8h30 às 13h30</div>
+        <div class="evento-dados-valor">8h às 13h30</div>
       </div>
       <div class="evento-dados-item">
         <div class="evento-dados-icon">📍</div>
