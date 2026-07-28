@@ -13,20 +13,22 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 SRC = ROOT / "index.html"
 
-# (slug, cupom, nome exibido, quem apresenta — pode ser "" pra genérico)
+# (slug, cupom, nome exibido, quem apresenta, prep)
+# prep = preposição usada com `nome` no texto (de / da / do)
+# se `quem` preenchido, cortesia usa "de {quem}" (pessoa); senão usa "{prep} {nome}"
 CONVITES = [
-    ("dayane",    "DAYANE20",    "Manual do Recém-Nascido",  "Dayane dos Anjos"),
-    ("juliana",   "JULIANA20",   "Dra. Juliana Chalupe",      "Juliana Chalupe"),
-    ("patricia",  "PATRICIA20",  "Patrícia Moreira",           "Patrícia Moreira"),
-    ("alline",    "ALLINE20",    "Alline Vieira",              "Alline Vieira"),
-    ("vittalice", "VITA20",      "Vittalice Saúde",            "Paula Grip"),
-    ("dosanjos",  "DOSANJOS20",  "Dos Anjos Fotografia",       "Priscilla Oliveira"),
-    ("karen",     "KAREN20",     "Vacinemais",                 "Karen Bazilio"),
-    ("rafaelbruns","RAFAEL20",   "Dr. Rafael Bruns",           "Rafael Bruns"),
-    ("vacinemais","VACINE20",    "Vacinemais",                 ""),
-    ("vilacarlota","CARLOTA20",  "Vila Carlota",               ""),
-    ("muitafesta","FESTA20",     "Muita Festa",                "Fabi Youssef"),
-    ("santoanjo", "SANTO20",     "Colégio Santo Anjo",         ""),
+    ("dayane",    "DAYANE20",    "Manual do Recém-Nascido",  "Dayane dos Anjos",    "do"),
+    ("juliana",   "JULIANA20",   "Dra. Juliana Chalupe",      "Juliana Chalupe",     "da"),
+    ("patricia",  "PATRICIA20",  "Patrícia Moreira",           "Patrícia Moreira",    "de"),
+    ("alline",    "ALLINE20",    "Alline Vieira",              "Alline Vieira",       "de"),
+    ("vittalice", "VITA20",      "Vittalice Saúde",            "Paula Grip",          "da"),
+    ("dosanjos",  "DOSANJOS20",  "Dos Anjos Fotografia",       "Priscilla Oliveira",  "da"),
+    ("karen",     "KAREN20",     "Vacinemais",                 "Karen Bazilio",       "da"),
+    ("rafaelbruns","RAFAEL20",   "Dr. Rafael Bruns",           "Rafael Bruns",        "do"),
+    ("vacinemais","VACINE20",    "Vacinemais",                 "",                    "da"),
+    ("vilacarlota","CARLOTA20",  "Vila Carlota",               "",                    "da"),
+    ("muitafesta","FESTA20",     "Muita Festa",                "Fabi Youssef",        "da"),
+    ("santoanjo", "SANTO20",     "Colégio Santo Anjo",         "",                    "do"),
 ]
 
 CHECKOUT_BASE = "https://www.diskingressos.com.br/event/3351"
@@ -91,7 +93,7 @@ EXTRA_CSS = """
   }
 """
 
-def build(slug, cupom, nome, quem):
+def build(slug, cupom, nome, quem, prep):
     src = SRC.read_text(encoding="utf-8")
 
     # 1) Meta tags: noindex + canonical + title
@@ -100,7 +102,7 @@ def build(slug, cupom, nome, quem):
         '<meta name="viewport" content="width=device-width, initial-scale=1.0" />\n'
         '<meta name="robots" content="noindex, follow" />'
     )
-    novo_title = f"Baby Talks · convidado especial de {nome} · 20% de desconto"
+    novo_title = f"Baby Talks · convidada especial {prep} {nome} · 20% de desconto"
     src = re.sub(r'<title>[^<]*</title>', f'<title>{novo_title}</title>', src, count=1)
     src = src.replace(
         '<link rel="canonical" href="https://babytalks.com.br/" />',
@@ -110,12 +112,12 @@ def build(slug, cupom, nome, quem):
     # 2) Injetar CSS extra antes de </style> (o 1º style — dos design tokens)
     src = src.replace('</style>', EXTRA_CSS + '\n</style>', 1)
 
-    # 3) Trocar o subtítulo da seção Ingressos pelo banner "convidado especial"
-    frase = f"Você é <span class=\"destaque\">convidado especial</span> de <span class=\"destaque\">{nome}</span>"
+    # 3) Trocar o subtítulo da seção Ingressos pelo banner "convidada especial"
+    frase = f"Você é <span class=\"destaque\">convidada especial</span> {prep} <span class=\"destaque\">{nome}</span>"
     if quem:
         subcopy = f"Cortesia de {quem}. Ganhe <strong>20% de desconto</strong> nos ingressos do Baby Talks."
     else:
-        subcopy = f"Cortesia da {nome}. Ganhe <strong>20% de desconto</strong> nos ingressos do Baby Talks."
+        subcopy = f"Cortesia {prep} {nome}. Ganhe <strong>20% de desconto</strong> nos ingressos do Baby Talks."
 
     banner = f"""<div class="convite-banner">
       <span class="convite-banner-eyebrow">🎁 Convite especial</span>
@@ -191,7 +193,7 @@ def build(slug, cupom, nome, quem):
 
 if __name__ == "__main__":
     filter_slug = sys.argv[1] if len(sys.argv) > 1 else None
-    for slug, cupom, nome, quem in CONVITES:
+    for slug, cupom, nome, quem, prep in CONVITES:
         if filter_slug and slug != filter_slug: continue
-        build(slug, cupom, nome, quem)
+        build(slug, cupom, nome, quem, prep)
     print(f"\nOK — {'1 página' if filter_slug else str(len(CONVITES)) + ' páginas'} gerada(s).")
