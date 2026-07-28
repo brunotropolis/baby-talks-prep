@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Baby Talks · O encontro que toda gestante gostaria de viver antes da chegada do bebê</title>
+<meta name="robots" content="noindex, follow" />
+<title>Baby Talks · convidado especial de Colégio Santo Anjo · 20% de desconto</title>
 <meta name="description" content="Gestação, parto, amamentação, sono e puerpério em uma manhã de aprendizado, conexão e preparação. 22 de agosto · Teatro Santo Anjo Barigui · Curitiba." />
-<link rel="canonical" href="https://babytalks.com.br/" />
+<link rel="canonical" href="https://babytalks.com.br/santoanjo/" />
 <meta property="og:title" content="Baby Talks" />
 <meta property="og:description" content="O encontro que toda gestante gostaria de viver antes da chegada do bebê. 22 de agosto · Curitiba." />
 <meta property="og:type" content="website" />
@@ -1141,6 +1142,59 @@ document.addEventListener('DOMContentLoaded', function() {
     section, .gravidez, .sobre, .aprende, .palestrantes, .experiencia, .parceiros, .ingressos, .local, .cta-final { padding: 60px 0; }
     .watermark { font-size: 100px; }
   }
+
+  /* Convite — banner + preços riscados */
+  .convite-banner {
+    display: block; max-width: 720px; margin: 0 auto 30px;
+    padding: 22px 26px;
+    background: linear-gradient(135deg, #F4DCE8 0%, #E4E6F2 100%);
+    border: 1.5px solid rgba(201, 95, 163, 0.35);
+    border-radius: 18px; text-align: center;
+    box-shadow: 0 12px 30px rgba(201, 95, 163, 0.14);
+  }
+  .convite-banner-eyebrow {
+    display: inline-block; font-size: 11px; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--magenta); font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .convite-banner h3 {
+    font-family: 'Fraunces', 'Fraunces Fallback', serif;
+    font-size: 22px; color: var(--azul); font-weight: 600; line-height: 1.3;
+    margin: 0 0 6px;
+  }
+  .convite-banner h3 .destaque { color: var(--magenta); font-style: italic; }
+  .convite-banner p {
+    font-size: 14px; color: var(--azul-suave); margin: 0;
+  }
+  .convite-banner .cupom {
+    display: inline-block; background: #fff; border: 1.5px dashed var(--magenta);
+    border-radius: 100px; padding: 6px 16px; margin-top: 10px;
+    font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 13px;
+    color: var(--magenta); letter-spacing: 0.14em;
+  }
+  .ingresso-preco-orig {
+    font-family: 'DM Sans', sans-serif; font-size: 16px; color: #A0A6C0;
+    text-decoration: line-through; margin-bottom: 2px; letter-spacing: 0.02em;
+  }
+  .ingresso-preco-orig::before { content: "de R$ "; }
+  .ingresso-preco-badge {
+    display: inline-block; background: var(--verde); color: #fff;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+    padding: 3px 10px; border-radius: 100px; margin-left: 6px;
+    text-transform: uppercase; vertical-align: middle;
+  }
+  .ingresso-validade {
+    font-family: 'DM Sans', sans-serif; font-size: 13px;
+    color: var(--magenta); font-weight: 800;
+    margin-top: -18px; margin-bottom: 24px;
+    letter-spacing: 0.02em;
+  }
+  .ingresso-validade::before { content: "⏳ "; }
+  @media (max-width: 900px) {
+    .convite-banner { margin: 0 16px 24px; padding: 18px 20px; }
+    .convite-banner h3 { font-size: 18px; }
+  }
+
 </style>
 
 <!-- ============= NAV ============= -->
@@ -1415,31 +1469,40 @@ document.addEventListener('DOMContentLoaded', function() {
 <section class="ingressos" id="ingressos">
   <span class="watermark">INGRESSOS</span>
   <div class="container" style="text-align:center;">
-    <span class="ingresso-lote-badge">🔥 1º Lote · Promocional</span>
     <h2 class="section-title-big">Garanta sua <span class="magenta">participação.</span></h2>
-    <p class="section-sub">Valor especial para o primeiro lote, ingressos limitados.</p>
+    <div class="convite-banner">
+      <span class="convite-banner-eyebrow">🎁 Convite especial</span>
+      <h3>Você é <span class="destaque">convidado especial</span> de <span class="destaque">Colégio Santo Anjo</span></h3>
+      <p>Cortesia da Colégio Santo Anjo. Ganhe <strong>20% de desconto</strong> nos ingressos do Baby Talks.</p>
+    </div>
 
     <div class="ingressos-grid">
       <div class="ingresso">
         <div class="ingresso-tipo">Ingresso Individual</div>
         <div class="ingresso-desc">Vivenciar o Baby Talks.</div>
+        <div class="ingresso-preco-orig">180</div>
         <div class="ingresso-preco-wrap">
           <span class="ingresso-cifrao">R$</span>
-          <span class="ingresso-valor">180</span>
+          <span class="ingresso-valor">144</span>
+          <span class="ingresso-preco-badge">-20%</span>
         </div>
-        <div class="ingresso-condicao">1 ingresso · 1º lote</div>
-        <a href="https://www.diskingressos.com.br/event/3351" target="_blank" rel="noopener" class="ingresso-btn">Comprar individual</a>
+        <div class="ingresso-condicao">1 ingresso · com cupom SANTO20</div>
+        <div class="ingresso-validade">Cupom válido até 07/08</div>
+        <a href="https://www.diskingressos.com.br/event/3351#SANTO20" target="_blank" rel="noopener" class="ingresso-btn">Comprar individual</a>
       </div>
 
       <div class="ingresso popular">
         <div class="ingresso-tipo">Ingresso Duplo</div>
         <div class="ingresso-desc">Vivenciar o Baby Talks em casal ou acompanhada de outra gestante.</div>
+        <div class="ingresso-preco-orig">260</div>
         <div class="ingresso-preco-wrap">
           <span class="ingresso-cifrao">R$</span>
-          <span class="ingresso-valor">260</span>
+          <span class="ingresso-valor">208</span>
+          <span class="ingresso-preco-badge">-20%</span>
         </div>
-        <div class="ingresso-condicao">2 ingressos · 1º lote</div>
-        <a href="https://www.diskingressos.com.br/event/3351" target="_blank" rel="noopener" class="ingresso-btn">Comprar duplo</a>
+        <div class="ingresso-condicao">2 ingressos · com cupom SANTO20</div>
+        <div class="ingresso-validade">Cupom válido até 07/08</div>
+        <a href="https://www.diskingressos.com.br/event/3351#SANTO20" target="_blank" rel="noopener" class="ingresso-btn">Comprar duplo</a>
       </div>
     </div>
 
@@ -1567,7 +1630,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="container cta-final-content">
     <h2>Viva a chegada do seu bebê<br><span class="accent">com presença e preparo.</span></h2>
     <p>Valor especial para o primeiro lote, ingressos limitados.</p>
-    <a href="https://www.diskingressos.com.br/event/3351" target="_blank" rel="noopener" class="btn-magenta">Quero viver o Baby Talks</a>
+    <a href="https://www.diskingressos.com.br/event/3351#SANTO20" target="_blank" rel="noopener" class="btn-magenta">Quero viver o Baby Talks</a>
   </div>
 </section>
 
