@@ -114,7 +114,6 @@ def build(slug, cupom, nome, quem):
       <span class="convite-banner-eyebrow">🎁 Convite especial</span>
       <h3>{frase}</h3>
       <p>{subcopy}</p>
-      <div class="cupom">Cupom: {cupom}</div>
     </div>"""
 
     # Substitui o subtítulo antigo + o badge de lote pelo banner
@@ -166,15 +165,15 @@ def build(slug, cupom, nome, quem):
     # Só substituir os que estão nos botões (não o card de parceiro do rodapé)
     src = src.replace(
         '<a href="https://www.diskingressos.com.br/event/3351" target="_blank" rel="noopener" class="ingresso-btn">Comprar individual</a>',
-        f'<a href="{checkout_url}" target="_blank" rel="noopener" class="ingresso-btn">Comprar individual · {cupom}</a>'
+        f'<a href="{checkout_url}" target="_blank" rel="noopener" class="ingresso-btn">Comprar individual</a>'
     )
     src = src.replace(
         '<a href="https://www.diskingressos.com.br/event/3351" target="_blank" rel="noopener" class="ingresso-btn">Comprar duplo</a>',
-        f'<a href="{checkout_url}" target="_blank" rel="noopener" class="ingresso-btn">Comprar duplo · {cupom}</a>'
+        f'<a href="{checkout_url}" target="_blank" rel="noopener" class="ingresso-btn">Comprar duplo</a>'
     )
     src = src.replace(
         '<a href="https://www.diskingressos.com.br/event/3351" target="_blank" rel="noopener" class="btn-magenta">Quero viver o Baby Talks</a>',
-        f'<a href="{checkout_url}" target="_blank" rel="noopener" class="btn-magenta">Quero viver o Baby Talks · {cupom}</a>'
+        f'<a href="{checkout_url}" target="_blank" rel="noopener" class="btn-magenta">Quero viver o Baby Talks</a>'
     )
 
     # Salvar
