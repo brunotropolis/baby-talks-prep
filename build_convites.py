@@ -94,102 +94,27 @@ EXTRA_CSS = """
 """
 
 def build(slug, cupom, nome, quem, prep):
+    # FASE: evento com alteração de data — páginas de convite estão em modo AVISO.
+    # Só ajusta noindex + canonical + title. Cupom/preço/checkout ficam desativados
+    # (o próprio index.html principal já mostra o aviso, sem botão de compra).
     src = SRC.read_text(encoding="utf-8")
 
-    # 1) Meta tags: noindex + canonical + title
     src = src.replace(
         '<meta name="viewport" content="width=device-width, initial-scale=1.0" />',
         '<meta name="viewport" content="width=device-width, initial-scale=1.0" />\n'
         '<meta name="robots" content="noindex, follow" />'
     )
-    novo_title = f"Baby Talks · convidada especial {prep} {nome} · 20% de desconto"
+    novo_title = f"Baby Talks · aguarde novidades ({nome})"
     src = re.sub(r'<title>[^<]*</title>', f'<title>{novo_title}</title>', src, count=1)
     src = src.replace(
         '<link rel="canonical" href="https://babytalks.com.br/" />',
         f'<link rel="canonical" href="https://babytalks.com.br/{slug}/" />'
     )
 
-    # 2) Injetar CSS extra antes de </style> (o 1º style — dos design tokens)
-    src = src.replace('</style>', EXTRA_CSS + '\n</style>', 1)
-
-    # 3) Trocar o subtítulo da seção Ingressos pelo banner "convidada especial"
-    frase = f"Você é <span class=\"destaque\">convidada especial</span> {prep} <span class=\"destaque\">{nome}</span>"
-    if quem:
-        subcopy = f"Cortesia de {quem}. Ganhe <strong>20% de desconto</strong> nos ingressos do Baby Talks."
-    else:
-        subcopy = f"Cortesia {prep} {nome}. Ganhe <strong>20% de desconto</strong> nos ingressos do Baby Talks."
-
-    banner = f"""<div class="convite-banner">
-      <span class="convite-banner-eyebrow">🎁 Convite especial</span>
-      <h3>{frase}</h3>
-      <p>{subcopy}</p>
-    </div>"""
-
-    # Substitui o subtítulo antigo + o badge de lote pelo banner
-    src = src.replace(
-        '<span class="ingresso-lote-badge">🔥 1º Lote · Promocional</span>\n'
-        '    <h2 class="section-title-big">Garanta sua <span class="magenta">participação.</span></h2>\n'
-        '    <p class="section-sub">Valor especial para o primeiro lote, ingressos limitados.</p>',
-        f'<h2 class="section-title-big">Garanta sua <span class="magenta">participação.</span></h2>\n'
-        f'    {banner}'
-    )
-
-    # 4) Preços com riscado
-    ind_new = preco(IND_ORIG)
-    dup_new = preco(DUP_ORIG)
-
-    # Card individual
-    src = src.replace(
-        '<div class="ingresso-preco-wrap">\n'
-        '          <span class="ingresso-cifrao">R$</span>\n'
-        f'          <span class="ingresso-valor">{IND_ORIG}</span>\n'
-        '        </div>\n'
-        '        <div class="ingresso-condicao">1 ingresso · 1º lote</div>',
-        f'<div class="ingresso-preco-orig">{IND_ORIG}</div>\n'
-        f'        <div class="ingresso-preco-wrap">\n'
-        f'          <span class="ingresso-cifrao">R$</span>\n'
-        f'          <span class="ingresso-valor">{ind_new}</span>\n'
-        f'          <span class="ingresso-preco-badge">-20%</span>\n'
-        f'        </div>\n'
-        f'        <div class="ingresso-condicao">1 ingresso · com cupom {cupom}</div>'
-    )
-    # Card duplo
-    src = src.replace(
-        '<div class="ingresso-preco-wrap">\n'
-        '          <span class="ingresso-cifrao">R$</span>\n'
-        f'          <span class="ingresso-valor">{DUP_ORIG}</span>\n'
-        '        </div>\n'
-        '        <div class="ingresso-condicao">2 ingressos · 1º lote</div>',
-        f'<div class="ingresso-preco-orig">{DUP_ORIG}</div>\n'
-        f'        <div class="ingresso-preco-wrap">\n'
-        f'          <span class="ingresso-cifrao">R$</span>\n'
-        f'          <span class="ingresso-valor">{dup_new}</span>\n'
-        f'          <span class="ingresso-preco-badge">-20%</span>\n'
-        f'        </div>\n'
-        f'        <div class="ingresso-condicao">2 ingressos · com cupom {cupom}</div>'
-    )
-
-    # 5) Trocar os 2 CTAs de compra + o CTA final pra levar cupom na URL
-    checkout_url = f"{CHECKOUT_BASE}#{cupom}"
-    # Só substituir os que estão nos botões (não o card de parceiro do rodapé)
-    src = src.replace(
-        '<a href="https://www.diskingressos.com.br/event/3351" target="_blank" rel="noopener" class="ingresso-btn">Comprar individual</a>',
-        f'<div class="ingresso-validade">Cupom válido até 07/08</div>\n        <a href="{checkout_url}" target="_blank" rel="noopener" class="ingresso-btn">Comprar individual</a>'
-    )
-    src = src.replace(
-        '<a href="https://www.diskingressos.com.br/event/3351" target="_blank" rel="noopener" class="ingresso-btn">Comprar duplo</a>',
-        f'<div class="ingresso-validade">Cupom válido até 07/08</div>\n        <a href="{checkout_url}" target="_blank" rel="noopener" class="ingresso-btn">Comprar duplo</a>'
-    )
-    src = src.replace(
-        '<a href="https://www.diskingressos.com.br/event/3351" target="_blank" rel="noopener" class="btn-magenta">Quero viver o Baby Talks</a>',
-        f'<a href="{checkout_url}" target="_blank" rel="noopener" class="btn-magenta">Quero viver o Baby Talks</a>'
-    )
-
-    # Salvar
     out_dir = ROOT / slug
     out_dir.mkdir(exist_ok=True)
     (out_dir / "index.html").write_text(src, encoding="utf-8")
-    print(f"  ✓ /{slug}/index.html — {nome} ({cupom}) — R${IND_ORIG}→R${ind_new} / R${DUP_ORIG}→R${dup_new}")
+    print(f"  ✓ /{slug}/index.html — {nome} (modo AVISO)")
 
 if __name__ == "__main__":
     filter_slug = sys.argv[1] if len(sys.argv) > 1 else None
